@@ -1,0 +1,34 @@
+[font]
+normal = { family = "Iosevka", style = "Regular" }
+bold = { family = "Iosevka", style = "Bold" }
+italic = { family = "Iosevka", style = "Italic" }
+size = 15
+#offset = { x = 1, y = 3 }
+
+[window]
+padding = {x = 5, y = 3}
+#opacity = 0.95
+
+[mouse]
+hide_when_typing = true
+
+[colors.primary]
+background = '#151515' # #1F1F1F
+foreground = '#D4D4D4'
+
+[colors.cursor]
+text = "#1F1F1F"
+cursor = "#D4D4D4"
+
+[colors.normal]
+black = "#1F1F1F"
+red = "#F44747"
+green = "#6A9955"
+yellow = "#DCDCAA"
+blue = "#569CD6"
+magenta = "#C586C0"
+cyan = "#56B6C2"
+white = "#D4D4D4"
+
+[colors.bright]
+black = "#808080"
