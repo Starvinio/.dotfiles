@@ -1,51 +1,54 @@
---  NOTE: NEOVIM CONFIG FILE 04-02-26
+--  NOTE: NEOVIM CONFIG FILE 26-02-26ini
 
+LSP_SERVERS = {
+		clangd = {},
+		basedpyright = {},
+		rust_analyzer = {},
+		lua_ls = {}
+}
 -- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- tab spacing
---vim.opt["expandtab"] = false
-vim.opt["tabstop"] = 4
-vim.opt["shiftwidth"] = 4
---vim.opt["softtabstop"] = 4
-
--- line settings
+-- Tabs
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+-- lines
 vim.o.number = true -- line numbers
 vim.o.relativenumber = true -- relative line numbers
-vim.o.cursorline = true -- Show which line your cursor is on
-vim.o.scrolloff = 10 -- minimum lines above and below cursor
-
--- layout
-vim.o.signcolumn = "yes" -- Keep signcolumn on by default
-vim.o.cmdheight = 0 -- 0 for vertical space
-vim.o.splitright = true
-vim.o.splitbelow = true
-
+vim.o.cursorline = true
+vim.o.wrap = false
+vim.o.scrolloff = 10
 -- searching
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
+-- layout
+vim.o.signcolumn = "yes" -- Keep signcolumn on by default
+vim.o.cmdheight = 0 -- 0 for vertical space
+vim.o.showmode = false
+vim.o.termguicolors = true
 -- files
 vim.o.confirm = true -- prompt to save or discard changes
-
--- misc
-vim.o.termguicolors = true -- enable text coloring
-vim.o.showmode = false
-vim.o.breakindent = true -- Enable break indent
 vim.o.undofile = true -- Save undo history
+-- misc
+vim.o.breakindent = true -- Enable break indent
 vim.o.updatetime = 250 -- Decrease update time
 vim.o.timeoutlen = 300 -- Decrease mapped sequence wait time
 vim.o.inccommand = "split" -- live substitutions
 
+
 -- [[ Basic Keymaps ]]
-
+-- clear search on ESC
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
-
+-- File Operations
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
+vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "Open diagnostic [Overview]"})
+
 
 -- Yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -58,63 +61,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		error("Error cloning lazy.nvim:\n" .. out)
-	end
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({ "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
+	-- Keep until comfy
 	{
 		"folke/which-key.nvim",
 		event = "VimEnter",
 		opts = {
 			delay = 0,
-			icons = {
-				mappings = vim.g.have_nerd_font,
-				keys = vim.g.have_nerd_font and {} or {
-					Up = "<Up> ",
-					Down = "<Down> ",
-					Left = "<Left> ",
-					Right = "<Right> ",
-					C = "<C-…> ",
-					M = "<M-…> ",
-					D = "<D-…> ",
-					S = "<S-…> ",
-					CR = "<CR> ",
-					Esc = "<Esc> ",
-					ScrollWheelDown = "<ScrollWheelDown> ",
-					ScrollWheelUp = "<ScrollWheelUp> ",
-					NL = "<NL> ",
-					BS = "<BS> ",
-					Space = "<Space> ",
-					Tab = "<Tab> ",
-					F1 = "<F1>",
-					F2 = "<F2>",
-					F3 = "<F3>",
-					F4 = "<F4>",
-					F5 = "<F5>",
-					F6 = "<F6>",
-					F7 = "<F7>",
-					F8 = "<F8>",
-					F9 = "<F9>",
-					F10 = "<F10>",
-					F11 = "<F11>",
-					F12 = "<F12>",
-				},
-			},
-
-			-- Document existing key chains
-			spec = {
-				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-			},
 		},
 	},
 
@@ -133,7 +94,7 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "nvim-tree/nvim-web-devicons"},
 		},
 		config = function()
 			require("telescope").setup({
@@ -146,15 +107,11 @@ require("lazy").setup({
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			vim.keymap.set("n", "<leader>/", function()
@@ -164,12 +121,9 @@ require("lazy").setup({
 				}))
 			end, { desc = "[/] Fuzzily search in current buffer" })
 
-			vim.keymap.set("n", "<leader>s/", function()
-				builtin.live_grep({
-					grep_open_files = true,
-					prompt_title = "Live Grep in Open Files",
-				})
-			end, { desc = "[S]earch [/] in Open Files" })
+			vim.keymap.set("n", "<leader>sc", function()
+				builtin.find_files { cwd = '~/.dotfiles' }
+			end, { desc = "[S]earch [C]onfig Files" })
 		end,
 	},
 
@@ -238,13 +192,6 @@ require("lazy").setup({
 					---@param method vim.lsp.protocol.Method
 					---@param bufnr? integer some lsp support methods only in specific files
 					---@return boolean
-					local function client_supports_method(client, method, bufnr)
-						if vim.fn.has("nvim-0.11") == 1 then
-							return client:supports_method(method, bufnr)
-						else
-							return client.supports_method(method, { bufnr = bufnr })
-						end
-					end
 
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
@@ -254,11 +201,7 @@ require("lazy").setup({
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if
 						client
-						and client_supports_method(
-							client,
-							vim.lsp.protocol.Methods.textDocument_documentHighlight,
-							event.buf
-						)
+						and client:supports_method( vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 					then
 						local highlight_augroup =
 							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -289,7 +232,7 @@ require("lazy").setup({
 					-- This may be unwanted, since they displace some of your code
 					if
 						client
-						and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+						and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
 					then
 						map("<leader>th", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -304,14 +247,14 @@ require("lazy").setup({
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
 				underline = { severity = vim.diagnostic.severity.ERROR },
-				signs = vim.g.have_nerd_font and {
+				signs = {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "󰅚 ",
 						[vim.diagnostic.severity.WARN] = "󰀪 ",
 						[vim.diagnostic.severity.INFO] = "󰋽 ",
 						[vim.diagnostic.severity.HINT] = "󰌶 ",
 					},
-				} or {},
+				},
 				virtual_text = {
 					source = "if_many",
 					spacing = 2,
@@ -329,22 +272,8 @@ require("lazy").setup({
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			local servers = {
-				clangd = {},
-				basedpyright = {},
-				rust_analyzer = {},
-				lua_ls = {
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				},
-			}
 
-			local ensure_installed = vim.tbl_keys(servers or {})
+			local ensure_installed = vim.tbl_keys(LSP_SERVERS or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 			})
@@ -355,7 +284,7 @@ require("lazy").setup({
 				automatic_installation = false,
 				handlers = {
 					function(server_name)
-						local server = servers[server_name] or {}
+						local server = LSP_SERVERS[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
@@ -404,31 +333,45 @@ require("lazy").setup({
 	{
 		"stevearc/oil.nvim",
 		config = function()
-			require("oil").setup()
+			require("oil").setup({
+			default_file_explorer = true,
+			view_options = {
+				show_hidden = false,
+			},
+			-- Toggle hidden files
+		    keymaps = {
+				["<C-h>"] = "actions.toggle_hidden",
+		    }
+		    })
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open file explorer" })
 		end,
 	},
 
-	{
-		-- STOP
+    {
+        'sainnhe/gruvbox-material',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme('gruvbox-material')
+            vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", {
+                fg = "#d8a657",
+                italic = true,
+            })
+            vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", {
+                fg = "#ea6962",
+                italic = true,
+            })
+            vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
+                sp = "#ea6962",
+                undercurl = true,
+            })
+            vim.api.nvim_set_hl(0, "DiagnosticSignError", {
+                fg = "#ea6962",
+            })
+            vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+        end
+    },
 
-		-- Your past self has chosen VSCode theme for simplicity
-		-- as well as its prettiness without being too distracting.
-		-- Additionally, you will use this theme in leetcode anyways.
-		-- There is absolutely no reason for you to change this theme.
-
-		-- It is good ENOUGH.
-		-- Thus, you SHOULD NOT change it.
-
-		"Mofiqul/vscode.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("vscode").setup({ transparent = true })
-			vim.cmd.colorscheme("vscode")
-		end,
-
-	},
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
@@ -447,6 +390,8 @@ require("lazy").setup({
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
+
+            require("mini.pairs").setup()
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
@@ -504,25 +449,86 @@ require("lazy").setup({
 		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
+{
+    'abecodes/tabout.nvim',
+    lazy = false,
+    config = function()
+      require('tabout').setup {
+        tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+        act_as_tab = true, -- shift content if tab out is not possible
+        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+        default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+        default_shift_tab = '<C-d>', -- reverse shift default action,
+        enable_backwards = true, -- well ...
+        completion = false, -- if the tabkey is used in a completion pum
+        tabouts = {
+          { open = "'", close = "'" },
+          { open = '"', close = '"' },
+          { open = '`', close = '`' },
+          { open = '(', close = ')' },
+          { open = '[', close = ']' },
+          { open = '{', close = '}' }
+        },
+        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+        exclude = {} -- tabout will ignore these filetypes
+      }
+    end,
+    dependencies = { -- These are optional
+      "nvim-treesitter/nvim-treesitter",
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/nvim-cmp"
+    },
+    opt = true,  -- Set this to true if the plugin is optional
+    event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
+    priority = 1000,
+  },
+
+    {
+  "folke/flash.nvim",
+  event = "VeryLazy",
+  ---@type Flash.Config
+  opts = {}, 
+  keys = {
+    { "zk", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    { "zK", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+  },
+
+  {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+          require 'colorizer'.setup {
+          '*'; -- Highlight all files, but customize some others.
+          css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
+        }
+        end,
+  },
+
+  'numToStr/Comment.nvim',
+  'folke/zen-mode.nvim',
+{
+  'akinsho/toggleterm.nvim',
+  version = "*",
+  opts = {
+    size = 15,
+    open_mapping = [[<C-\>]],
+    direction = 'float',
+    float_opts = {
+      border = 'curved',
+    },
+    shade_terminals = false, -- keeps gruvbox colors accurate
+  }
+},
+
+}
 
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-		icons = vim.g.have_nerd_font and {} or {
-			cmd = "⌘",
-			config = "🛠",
-			event = "📅",
-			ft = "📂",
-			init = "⚙",
-			keys = "🗝",
-			plugin = "🔌",
-			runtime = "💻",
-			require = "🌙",
-			source = "📄",
-			start = "🚀",
-			task = "📌",
-			lazy = "💤 ",
-		},
+		icons = {}
 	},
 })
