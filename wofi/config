@@ -1,0 +1,8 @@
+width=25%
+height=40%
+prompt=Search
+location=top
+y=5
+term=alacritty
+close_on_focus_loss=true
+single_click=true

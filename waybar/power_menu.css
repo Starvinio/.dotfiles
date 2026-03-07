@@ -1,0 +1,49 @@
+/* power_menu.css — tight dropdown style for waybar power button */
+
+window {
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid #222222;
+    border-radius: 4px;
+    font-family: "JetbrainsMono Nerd Font";
+    font-size: 13px;
+}
+
+#input {
+    background-color: #111111;
+    color: #e8e8e8;
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    outline: none;
+    caret-color: #e8e8e8;
+}
+
+#outer-box {
+    padding: 4px 0;
+    border:none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0;
+    padding: 0;
+}
+
+#inner-box {
+    margin: 0;
+    padding: 0;
+}
+
+#entry {
+    padding: 5px 14px;
+    color: #888888;
+    border-radius: 0;
+}
+
+#entry:selected {
+    background-color: #1a1a1a;
+    color: #e8e8e8;
+}
+
+#text {
+    margin: 0;
+}
