@@ -3,35 +3,29 @@ normal = { family = "Iosevka", style = "Regular" }
 size = 15
 
 [window]
-padding = {x = 5, y = 5}
+padding = {x = 5, y = 4}
 dynamic_padding = true
 
 [mouse]
 hide_when_typing = true
 
-# Default colors
 [colors.primary]
-background = '#282828'
-foreground = '#d4be98'
+background = '#1F1F1F'
+foreground = '#D4D4D4'
 
-# Normal colors
+[colors.cursor]
+text = "#1F1F1F"
+cursor = "#D4D4D4"
+
 [colors.normal]
-black   = '#3c3836'
-red     = '#ea6962'
-green   = '#a9b665'
-yellow  = '#d8a657'
-blue    = '#7daea3'
-magenta = '#d3869b'
-cyan    = '#89b482'
-white   = '#d4be98'
+black = "#1F1F1F"
+red = "#F44747"
+green = "#6A9955"
+yellow = "#DCDCAA"
+blue = "#569CD6"
+magenta = "#C586C0"
+cyan = "#56B6C2"
+white = "#D4D4D4"
 
-# Bright colors (same as normal colors)
 [colors.bright]
-black   = '#3c3836'
-red     = '#ea6962'
-green   = '#a9b665'
-yellow  = '#d8a657'
-blue    = '#7daea3'
-magenta = '#d3869b'
-cyan    = '#89b482'
-white   = '#d4be98'
+black = "#808080"

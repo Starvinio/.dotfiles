@@ -6,9 +6,11 @@ LSP_SERVERS = {
 		rust_analyzer = {},
 		lua_ls = {}
 }
+local vim=vim
 -- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
 -- Tabs
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -348,30 +350,13 @@ require("lazy").setup({
 	},
 
     {
-        'sainnhe/gruvbox-material',
+        "Mofiqul/vscode.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme('gruvbox-material')
-            vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", {
-                fg = "#d8a657",
-                italic = true,
-            })
-            vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", {
-                fg = "#ea6962",
-                italic = true,
-            })
-            vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
-                sp = "#ea6962",
-                undercurl = true,
-            })
-            vim.api.nvim_set_hl(0, "DiagnosticSignError", {
-                fg = "#ea6962",
-            })
-            vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+            vim.cmd.colorscheme('vscode')
         end
     },
-
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
@@ -485,19 +470,6 @@ require("lazy").setup({
   },
 
     {
-  "folke/flash.nvim",
-  event = "VeryLazy",
-  ---@type Flash.Config
-  opts = {}, 
-  keys = {
-    { "zk", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "zK", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-  },
-
-  {
       "norcalli/nvim-colorizer.lua",
       config = function()
           require 'colorizer'.setup {
@@ -505,30 +477,30 @@ require("lazy").setup({
           css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
         }
         end,
-  },
-
-  'numToStr/Comment.nvim',
-  'folke/zen-mode.nvim',
-{
-  'akinsho/toggleterm.nvim',
-  version = "*",
-  opts = {
-    size = 15,
-    open_mapping = [[<C-\>]],
-    direction = 'float',
-    float_opts = {
-      border = 'curved',
     },
-    shade_terminals = false, -- keeps gruvbox colors accurate
-  }
-},
 
-}
+    'numToStr/Comment.nvim',
+    {
+      'akinsho/toggleterm.nvim',
+      version = "*",
+      opts = {
+        size = 15,
+        open_mapping = [[<C-\>]],
+        direction = 'float',
+        float_opts = {
+          border = 'curved',
+        },
+        shade_terminals = false, -- keeps gruvbox colors accurate
+      }
+    },
 
-}, {
-	ui = {
-		-- If you are using a Nerd Font: set icons to an empty table which will use the
-		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-		icons = {}
-	},
+    {
+        'mluders/comfy-line-numbers.nvim',
+        opts = {
+            function ()
+                require('comfy-line-numbers').setup()
+            end
+        }
+    }
+
 })

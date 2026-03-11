@@ -16,12 +16,12 @@ set $term alacritty
 set $menu wofi --show drun
 
 ### Output configuration
-output * bg "/home/user/Pictures/wallpaper.png" fill
+output * bg "$HOME/.dotfiles/static/wallpaper.png" fill
 
 font pango:JetbrainsMono Nerd Font 10
 
-gaps outer 10
-gaps inner 8
+gaps outer 6
+gaps inner 6
 default_border pixel
 title_align center
 for_window [all] title_format "%title"
@@ -84,10 +84,10 @@ input type:keyboard {
 # }
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -c 000000 -i "/home/user/Pictures/catppuccin/tree.jpg"
+	bindsym $mod+Shift+x    exec swaylock -c 000000 -i "/home/user/Pictures/pacman.png"
     bindsym $mod+Return     exec $term
 	bindsym $mod+Shift+Return exec $term --class Terminal
-    bindsym $mod+n exec $term --class Notes -e nvim ~/notes 
+    bindsym $mod+n exec $term --class Notes -e nvim ~/Text/notes.txt 
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+r    reload
@@ -179,7 +179,6 @@ bindsym $mod+r mode "󰘖"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-
 
 
 # Bar

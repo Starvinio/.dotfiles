@@ -124,7 +124,8 @@ alias vim='nvim'
 alias vi='nvim'
 alias n='nvim'
 
-alias swayconfig='nvim ~/.config/sway/config'
+alias swayconf='nvim ~/.config/sway/config'
+alias nvimconf='nvim ~/.config/nvim/init.lua'
 
 
 export NVM_DIR="$HOME/.nvm"
