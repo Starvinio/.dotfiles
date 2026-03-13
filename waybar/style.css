@@ -7,9 +7,9 @@
 }
 
 window#waybar {
-    background-color: rgba(10, 10, 10, 0.7);
+    background-color: #000000;
     color: #e8e8e8;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.06); */
 }
 
 button {
@@ -25,7 +25,6 @@ button:hover {
 /* ── Workspace dots ───────────────────────────────────────────── */
 #workspaces {
     margin: 5px 0 5px 8px;
-    padding: 0 2px;
 }
 
 #workspaces button {
@@ -68,7 +67,6 @@ button:hover {
 #battery,
 #pulseaudio,
 #memory,
-#custom-power,
 #clock {
     padding-right: 20px;
     color: #888888;
@@ -133,6 +131,10 @@ button:hover {
     color: #3a3a3a;
 }
 
+#custom-power {
+    color:#555555;
+    margin: 3px 0px 5px 20px;
+}
 #custom-power:hover {
     color: #ff5f57;
 }

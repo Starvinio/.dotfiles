@@ -13,57 +13,23 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $menu wofi --show drun
+set $menu wofi --show drun 
 
-### Output configuration
-output * bg "$HOME/.dotfiles/static/wallpaper.png" fill
-
+# font
 font pango:JetbrainsMono Nerd Font 10
 
-gaps outer 6
-gaps inner 6
-default_border pixel
+# layout
+gaps outer 10
+gaps inner 4
+default_border pixel 3
 title_align center
-for_window [all] title_format "%title"
-for_window [title="Volume Control"] floating enable 
-for_window [title="Volume Control"] resize set width 40 ppt height 35 ppt
-
-
-focus_follows_mouse no
-
-
-#SwayFX Options
-corner_radius 8
-smart_corner_radius enable
-shadows enable
-shadow_blur_radius 20
-
-blur enable
-blur_passes 2
-blur_radius 4
-
-default_dim_inactive 0.15
-
 
 set $accent #333333
-
 # class                 border  backgr. text    indicator child_border
 client.focused          $accent $accent #e8e8e8 $accent   $accent
 client.focused_inactive #222222 #141414 #888888 #222222   #222222
-client.unfocused        $accent #141414 #555555 #1a1a1a   #1a1a1a
+client.unfocused        #141414 #141414 #555555 #1a1a1a   #000000
 client.urgent           #ff5f57 #141414 #ff5f57 #ff5f57   #ff5f57
-
-layer_effects "waybar" {
-    blur enable
-    shadows enable
-}
-
-layer_effects "wofi" {
-    blur enable
-    shadows enable
-    corner_radius 8
-
-}
 
 
 ### Input configuration
@@ -86,13 +52,10 @@ input type:keyboard {
 ### Key bindings
 	bindsym $mod+Shift+x    exec swaylock -c 000000 -i "/home/user/Pictures/pacman.png"
     bindsym $mod+Return     exec $term
-	bindsym $mod+Shift+Return exec $term --class Terminal
     bindsym $mod+n exec $term --class Notes -e nvim ~/Text/notes.txt 
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+r    reload
-    bindsym $mod+Shift+e    exec swaynag -t warning -m 'Exit sway?' \
-    -B 'Yes, exit sway' 'swaymsg exit'
     floating_modifier $mod normal
 
     ### Focus movement
@@ -124,34 +87,22 @@ input type:keyboard {
     ### Layout
     bindsym $mod+b splith
     bindsym $mod+v splitv
-    bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
     bindsym $mod+f fullscreen
     bindsym $mod+Shift+space floating toggle
     bindsym $mod+space focus mode_toggle
-    bindsym $mod+a focus parent
 
 	# Set coding size manually
-	bindsym $mod+F11 resize set width 60 ppt height 100 ppt
 	bindsym $mod+F12 move position center
 
 	# screenshot
     bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
     bindsym $mod+Shift+Print exec sh -c 'grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png'
-	# Create centered floating terminal instance 
-	for_window [app_id="Terminal"] floating enable
-	for_window [app_id="Terminal"] resize set width 60 ppt height 100 ppt
-	for_window [app_id="Terminal"] move position center
 
 	for_window [app_id="Notes"] floating enable
 	for_window [app_id="Notes"] resize set width 50 ppt height 70 ppt
 	for_window [app_id="Notes"] move position center
-
-
-    # Scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-    bindsym $mod+minus scratchpad show
 
 ### Resize mode
 mode "󰘖" {

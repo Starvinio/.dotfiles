@@ -1,9 +1,9 @@
 [font]
-normal = { family = "Iosevka", style = "Regular" }
+normal = { family = "JetbrainsMono", style = "Regular" }
 size = 15
 
 [window]
-padding = {x = 5, y = 4}
+padding = {x = 5, y = 5}
 dynamic_padding = true
 
 [mouse]

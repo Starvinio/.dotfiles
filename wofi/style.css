@@ -1,95 +1,70 @@
-/* ~/.config/wofi/style.css */
-
+/* Global */
 * {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 13px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
 }
 
+/* Main window */
 window {
-    background-color: rgba(20, 20, 20, 0.7);
-    border: 1px solid #222222;
-    border-radius: 8px;
-}
-
-/* Search input */
-#input {
-    margin: 10px 10px 6px 10px;
-    padding: 6px 10px;
-    background-color: rgba(20, 20, 20, 0.9);
-    color: #e8e8e8;
+    background-color: rgba(0, 0, 0, 100);
     border: 1px solid #2a2a2a;
-    border-radius: 4px;
-    outline: none;
-    caret-color: #e8e8e8;
+    border-radius: 2px;
 }
 
-#input:focus {
-    border-color: #444444;
-}
-
-/* Remove double-border structure */
+/* Outer container */
 #outer-box {
-    margin: 0;
-    padding: 0 4px 6px 4px;
-    background-color: transparent;
-    border: none;
+    margin: 0px;
+    padding: 5px;
 }
 
+/* Input box */
+#input {
+    background-color: transparent;
+    color: #e6e6e6;
+
+    border: none;
+    border-bottom: 1px solid #2a2a2a;
+
+    padding: 10px 4px;
+    margin-bottom: 20px;
+
+    outline: none;
+}
+
+/* Scroll container */
 #scroll {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
 }
 
-scrollbar,
-scrollbar slider {
-    min-width: 0px;
-    min-height: 0px;
-    opacity: 0;
-}
-
+/* Entry list */
 #inner-box {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    border: none;
+    margin: 0px;
+    padding: 0px;
 }
 
-/* Entries */
+/* Individual entries */
 #entry {
-    padding: 6px 10px;
-    color: #666666;
-    border-radius: 4px;
-    margin: 1px 0;
-    background-color:transparent
-    transition: background-color 100ms ease, color 100ms ease;
+    padding: 6px 4px;
+    color: #9a9a9a;
 }
 
+/* Hover */
 #entry:hover {
-    background-color: rgba(20, 20, 20, 0.9);
-    color: #e8e8e8;
-    cursor: pointer;
+    color: #ffffff;
 }
 
+/* Selected item */
 #entry:selected {
-    background-color: rgba(20, 20, 20, 0.9);
-    color: #e8e8e8;
-}
-
-/* Expanded app actions (e.g. Firefox → New Window) */
-#entry.action {
-    padding: 4px 10px 4px 24px;
-    color: #000000;
     background-color: transparent;
+    color: #ffffff;
 }
 
+/* Icons */
+#img {
+    margin-right: 10px;
+}
+
+/* Text */
 #text {
     color: inherit;
-    margin: 0;
-}
-
-/* App icon */
-#img {
-    margin-right: 8px;
-    min-width: 16px;
-    min-height: 16px;
 }

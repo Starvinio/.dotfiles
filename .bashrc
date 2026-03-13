@@ -59,7 +59,7 @@ fi
 if [ "$TERM" = 'linux' ]; then
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 else
-    PS1='\[\e[32m\]\w\[\e[0m\] ❯ '
+    PS1='\[\e[32m\]\w\[\e[0m\] $ '
 fi
 unset color_prompt force_color_prompt
 

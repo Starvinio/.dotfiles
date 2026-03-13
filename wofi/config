@@ -1,8 +1,7 @@
-width=25%
-height=40%
-prompt=Search
+width=30%
 location=top
-y=5
 term=alacritty
+prompt=
+lines=3
 close_on_focus_loss=true
 single_click=true
