@@ -6,7 +6,7 @@
     padding: 0;
 }
 window#waybar {
-    background-color: #E8E4E0;
+    background: transparent;
     color: #111111;
 }
 button {

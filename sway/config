@@ -49,7 +49,7 @@ input type:keyboard {
 # }
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -c 00000
+	bindsym $mod+Shift+x    exec swaylock -c 000000 -i /home/$USER/.dotfiles/lock.jpg
     bindsym $mod+Return     exec $term
     bindsym $mod+n exec $term --class Notes -e nvim ~/Text/notes.txt 
     bindsym $mod+Shift+q    kill
@@ -78,8 +78,8 @@ input type:keyboard {
     bindsym $mod+9 workspace number 3
     bindsym $mod+0 workspace number 4
 
-    bindsym --whole-window $mod+button8 workspace number 1
-    bindsym --whole-window $mod+button9 workspace number 2
+    bindsym --whole-window $mod+button4 workspace prev
+    bindsym --whole-window $mod+button5 workspace next
 
     bindsym $mod+Shift+7 move container to workspace number 1
     bindsym $mod+Shift+8 move container to workspace number 2

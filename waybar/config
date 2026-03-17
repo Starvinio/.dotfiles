@@ -1,9 +1,11 @@
 {
     "height": 28,
+    "position": "top",
     "spacing": 3, 
     "modules-left": [
         "custom/power",
         "sway/workspaces", 
+        "niri/workspaces",
         "sway/mode", 
     ],
     "modules-right": [ 

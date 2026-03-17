@@ -125,6 +125,7 @@ alias vi='nvim'
 alias n='nvim'
 
 alias swayconf='nvim ~/.config/sway/config'
+alias dots='cd ~/.dotfiles && nvim'
 alias nvimconf='nvim ~/.config/nvim/init.lua'
 
 
