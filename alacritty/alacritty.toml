@@ -1,5 +1,7 @@
+general.import = ["~/.config/alacritty/colors.toml"]
+
 [font]
-normal = { family = "JetbrainsMono", style = "Regular" }
+normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
 size = 15
 
 [window]
@@ -9,23 +11,4 @@ dynamic_padding = true
 [mouse]
 hide_when_typing = true
 
-[colors.primary]
-background = '#1F1F1F'
-foreground = '#D4D4D4'
 
-[colors.cursor]
-text = "#1F1F1F"
-cursor = "#D4D4D4"
-
-[colors.normal]
-black = "#1F1F1F"
-red = "#F44747"
-green = "#6A9955"
-yellow = "#DCDCAA"
-blue = "#569CD6"
-magenta = "#C586C0"
-cyan = "#56B6C2"
-white = "#D4D4D4"
-
-[colors.bright]
-black = "#808080"

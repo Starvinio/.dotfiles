@@ -1,0 +1,7 @@
+# Sway dark theme
+set $accent #333333
+# class                 border  backgr. text    indicator child_border
+client.focused          $accent $accent #e8e8e8 $accent   $accent
+client.focused_inactive #222222 #141414 #888888 #222222   #222222
+client.unfocused        #141414 #141414 #555555 #1a1a1a   #000000
+client.urgent           #ff5f57 #141414 #ff5f57 #ff5f57   #ff5f57

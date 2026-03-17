@@ -5,7 +5,6 @@ set -e
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 mkdir -p ~/.config/{alacritty,sway,nvim,waybar,wofi}
-mkdir -p ~/.config/waybar/scripts/
 
 # profile & bashrc
 ln -sfn "$DOTFILES_DIR/.profile" ~/.profile
@@ -33,7 +32,8 @@ echo "Linked waybar config"
 # wofi
 ln -sfn "$DOTFILES_DIR/wofi/config" ~/.config/wofi/config 
 ln -sfn "$DOTFILES_DIR/wofi/style.css" ~/.config/wofi/style.css
+echo "Linked wofi config"
 
 
 
-echo "Dotfiles successfully linked."
+echo "All dotfiles successfully linked."

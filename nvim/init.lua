@@ -1,16 +1,26 @@
---  NOTE: NEOVIM CONFIG FILE 26-02-26ini
+--  NOTE: NEOVIM CONFIG FILE 26-02-26
 
 LSP_SERVERS = {
 		clangd = {},
 		basedpyright = {},
 		rust_analyzer = {},
-		lua_ls = {}
+		lua_ls = {},
+        bashls = {},
 }
 local vim=vim
 -- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Set bg to light/dark according to cache file
+function LOAD_BG()
+    local theme_file = io.open(vim.fn.expand("~/.cache/current-theme"), "r")
+    if theme_file then
+        local theme = theme_file:read("*l")
+        theme_file:close()
+        vim.o.background = theme
+    end
+end
 -- Tabs
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -43,14 +53,22 @@ vim.o.inccommand = "split" -- live substitutions
 -- [[ Basic Keymaps ]]
 -- clear search on ESC
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
+-- Escape terminal mode (for floating ter)
+vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<leader>FN", "ofn () {\n}<Esc>kf(i", { desc = "Create Rust Function" })
+vim.keymap.set("v", "<leader>(", "da^(<Esc>pa)<Esc>F^cl", { desc = "Surround with brackets and enter front" })
 -- File Operations
+vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
+
+vim.keymap.set("n", "<leader>1", LOAD_BG)
+vim.keymap.set("n", "<leader>0", "<cmd>set background=dark<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
 vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "Open diagnostic [Overview]"})
-
 
 -- Yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -122,13 +140,8 @@ require("lazy").setup({
 					previewer = false,
 				}))
 			end, { desc = "[/] Fuzzily search in current buffer" })
-
-			vim.keymap.set("n", "<leader>sc", function()
-				builtin.find_files { cwd = '~/.dotfiles' }
-			end, { desc = "[S]earch [C]onfig Files" })
 		end,
 	},
-
 	-- LSP Plugins
 	{
 		"folke/lazydev.nvim",
@@ -188,7 +201,6 @@ require("lazy").setup({
 					--  Useful when you're not sure what type a variable is and you want to see
 					--  the definition of its *type*, not where it was *defined*.
 					map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
-
 					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 					---@param client vim.lsp.Client
 					---@param method vim.lsp.protocol.Method
@@ -257,19 +269,7 @@ require("lazy").setup({
 						[vim.diagnostic.severity.HINT] = "󰌶 ",
 					},
 				},
-				virtual_text = {
-					source = "if_many",
-					spacing = 2,
-					format = function(diagnostic)
-						local diagnostic_message = {
-							[vim.diagnostic.severity.ERROR] = diagnostic.message,
-							[vim.diagnostic.severity.WARN] = diagnostic.message,
-							[vim.diagnostic.severity.INFO] = diagnostic.message,
-							[vim.diagnostic.severity.HINT] = diagnostic.message,
-						}
-						return diagnostic_message[diagnostic.severity]
-					end,
-				},
+				virtual_text = false
 			})
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -348,13 +348,25 @@ require("lazy").setup({
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open file explorer" })
 		end,
 	},
-
     {
-        "Mofiqul/vscode.nvim",
+        "zenbones-theme/zenbones.nvim",
+        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+        -- In Vim, compat mode is turned on as Lush only works in Neovim.
+        dependencies = "rktjmp/lush.nvim",
         lazy = false,
         priority = 1000,
+        -- you can set set configuration options here
         config = function()
-            vim.cmd.colorscheme('vscode')
+            LOAD_BG()
+            vim.g.zenbones = {
+                darken_noncurrent_window = true,
+                lighten_noncurrent_window = true
+
+
+
+            }
+            vim.cmd.colorscheme('zenbones')
         end
     },
 
@@ -434,40 +446,6 @@ require("lazy").setup({
 		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
-{
-    'abecodes/tabout.nvim',
-    lazy = false,
-    config = function()
-      require('tabout').setup {
-        tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
-        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-        act_as_tab = true, -- shift content if tab out is not possible
-        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = '<C-d>', -- reverse shift default action,
-        enable_backwards = true, -- well ...
-        completion = false, -- if the tabkey is used in a completion pum
-        tabouts = {
-          { open = "'", close = "'" },
-          { open = '"', close = '"' },
-          { open = '`', close = '`' },
-          { open = '(', close = ')' },
-          { open = '[', close = ']' },
-          { open = '{', close = '}' }
-        },
-        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-        exclude = {} -- tabout will ignore these filetypes
-      }
-    end,
-    dependencies = { -- These are optional
-      "nvim-treesitter/nvim-treesitter",
-      "L3MON4D3/LuaSnip",
-      "hrsh7th/nvim-cmp"
-    },
-    opt = true,  -- Set this to true if the plugin is optional
-    event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
-    priority = 1000,
-  },
 
     {
       "norcalli/nvim-colorizer.lua",

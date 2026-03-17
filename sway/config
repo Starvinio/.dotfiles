@@ -1,4 +1,6 @@
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS
 exec_always export XDG_CURRENT_DESKTOP=sway
+exec /home/user/.dotfiles/themes/load_theme.sh
 
 # Keboard layout and rebinding
 input type:keyboard {
@@ -13,23 +15,20 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
+set $browser qutebrowser
 set $menu wofi --show drun 
+
+exec $term
 
 # font
 font pango:JetbrainsMono Nerd Font 10
+
 
 # layout
 gaps outer 10
 gaps inner 4
 default_border pixel 3
 title_align center
-
-set $accent #333333
-# class                 border  backgr. text    indicator child_border
-client.focused          $accent $accent #e8e8e8 $accent   $accent
-client.focused_inactive #222222 #141414 #888888 #222222   #222222
-client.unfocused        #141414 #141414 #555555 #1a1a1a   #000000
-client.urgent           #ff5f57 #141414 #ff5f57 #ff5f57   #ff5f57
 
 
 ### Input configuration
@@ -50,12 +49,15 @@ input type:keyboard {
 # }
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -c 000000 -i "/home/user/Pictures/pacman.png"
+	bindsym $mod+Shift+x    exec swaylock -c 00000
     bindsym $mod+Return     exec $term
     bindsym $mod+n exec $term --class Notes -e nvim ~/Text/notes.txt 
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
-    bindsym $mod+Shift+r    reload
+    bindsym $mod+o          exec $browser
+    bindsym $mod+Shift+c    exec /home/user/.dotfiles/themes/load_theme.sh
+    bindsym $mod+F1 exec /home/user/.dotfiles/themes/toggle_theme.sh
+    bindsym $mod+F2 exec gammastep -O 3500
     floating_modifier $mod normal
 
     ### Focus movement
