@@ -86,6 +86,7 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export MANPAGER='nvim +Man!'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -120,15 +121,17 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Custom aliases
 alias cr='cargo run'
-alias vim='nvim'
-alias vi='nvim'
-alias n='nvim'
+alias v='nvim'
 
 alias swayconf='nvim ~/.config/sway/config'
-alias dots='cd ~/.dotfiles && nvim'
-alias nvimconf='nvim ~/.config/nvim/init.lua'
+alias dots='cd ~/.dotfiles && nvim .'
+alias vimconf='nvim ~/.config/nvim/init.lua'
+
+alias mountusb='sudo mount /dev/sdb1 /mnt/usb && cd /mnt/usb'
+alias umountusb='cd ~ && sudo umount /mnt/usb'
 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.tarball-installations/zen:$PATH"

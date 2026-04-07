@@ -1,5 +1,4 @@
 {
-    "height": 28,
     "position": "top",
     "spacing": 3, 
     "modules-left": [
@@ -7,6 +6,9 @@
         "sway/workspaces", 
         "niri/workspaces",
         "sway/mode", 
+    ],
+    "modules-center":[
+        "sway/window",
     ],
     "modules-right": [ 
 		"memory",
@@ -33,6 +35,11 @@
             "default": "󰝦",
             "focused": "󰝥",
          }
+    },
+    "sway/window": {
+        "rewrite": {
+            "Alacritty": "Terminal"
+        },
     },
     "clock": {
         "interval": 60,

@@ -1,0 +1,136 @@
+--  NOTE: NEOVIM CONFIG FILE 02-04-2026 Post 0.12
+--  Goals:
+--  > Enough syntax highlighting to distinguish structure (functions, strings, primitives)
+--  > Create snippets that replace autocomplete (for functions etc)
+--  > 
+
+
+-- Set bg to light/dark according to cache file
+function LOAD_BG()
+    local theme_file = io.open(vim.fn.expand("~/.cache/current-theme"), "r")
+    if theme_file then
+        local theme = theme_file:read("*l")
+        theme_file:close()
+        vim.o.background = theme
+        vim.cmd.colorscheme('mentat')
+    end
+end
+
+-- Leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+-- Tabs
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+
+-- mouse support
+vim.opt.mouse = "a"
+-- lines
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.wrap = false
+vim.opt.scrolloff = 10
+-- layout
+vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
+vim.opt.cmdheight = 0 -- 0 for vertical space
+vim.opt.showmode = false
+vim.opt.termguicolors = true
+-- files
+vim.opt.confirm = true -- prompt to save or discard changes
+vim.opt.undofile = true -- Save undo history
+-- misc
+vim.opt.breakindent = true -- Enable break indent
+vim.opt.updatetime = 250 -- Decrease update time
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.opt.inccommand = "split" -- live substitutions
+
+vim.diagnostic.config({
+    severity_sort = true,
+    float = { border = "rounded", source = "if_many" },
+    underline = { severity = vim.diagnostic.severity.ERROR },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.INFO] = "󰋽 ",
+            [vim.diagnostic.severity.HINT] = "󰌶 ",
+        },
+    },
+    virtual_text = false
+})
+
+
+-- [[ Basic Keymaps ]]
+-- clear search on ESC
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
+-- Escape terminal mode (for floating ter)
+vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<leader>FN", "ofn () {\n}<Esc>kf(i", { desc = "Create Rust Function" })
+vim.keymap.set("v", "<leader>(", "da^(<Esc>pa)<Esc>F^cl", { desc = "Surround with brackets and enter front" })
+-- File Operations
+vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+
+vim.keymap.set("n", "<leader>1", LOAD_BG)
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
+vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "Open diagnostic [Overview]"})
+
+-- Yank highlight
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
+})
+-- INFO: fuzzy finder
+vim.pack.add({
+  "https://github.com/stevearc/oil.nvim",
+  "https://github.com/nvim-lua/plenary.nvim",        -- library dependency
+  "https://github.com/nvim-tree/nvim-web-devicons",  -- icons (nerd font)
+  "https://github.com/nvim-telescope/telescope.nvim", -- the fuzzy finder
+  "https://github.com/mluders/comfy-line-numbers.nvim",
+  "https://github.com/akinsho/toggleterm.nvim",
+}, { confirm = false })
+
+local pickers = require("telescope.builtin")
+
+vim.keymap.set("n", "<leader>sp", pickers.builtin, { desc = "[S]earch Builtin [P]ickers", })
+vim.keymap.set("n", "<leader>sb", pickers.buffers, { desc = "[S]earch [B]uffers", })
+vim.keymap.set("n", "<leader>sf", pickers.find_files, { desc = "[S]earch [F]iles", })
+vim.keymap.set("n", "<leader>sw", pickers.grep_string, { desc = "[S]earch Current [W]ord", })
+vim.keymap.set("n", "<leader>sg", pickers.live_grep, { desc = "[S]earch by [G]rep", })
+vim.keymap.set("n", "<leader>sr", pickers.resume, { desc = "[S]earch [R]esume", })
+
+vim.keymap.set("n", "<leader>sh", pickers.help_tags, { desc = "[S]earch [H]elp", })
+vim.keymap.set("n", "<leader>sm", pickers.man_pages, { desc = "[S]earch [M]anuals", })
+
+require("telescope").setup()
+require("comfy-line-numbers").setup()
+require("oil").setup({
+    default_file_explorer = true,
+    view_options = {
+        show_hidden = false,
+    },
+    -- Toggle hidden files
+    keymaps = {
+        ["<C-h>"] = "actions.toggle_hidden",
+    }
+})
+require("toggleterm").setup({
+    size = 65,
+    open_mapping = [[<C-\>]],
+    direction = 'vertical',
+    float_opts = {
+      border = 'curved',
+    },
+    shade_terminals = false, 
+})
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open file explorer" })
+LOAD_BG()
+

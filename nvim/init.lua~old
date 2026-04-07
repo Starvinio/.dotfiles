@@ -19,7 +19,6 @@ function LOAD_BG()
         local theme = theme_file:read("*l")
         theme_file:close()
         vim.o.background = theme
-        vim.cmd.colorscheme('mentat2')
     end
 end
 -- Tabs
@@ -28,27 +27,27 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 -- lines
-vim.opt.number = true -- line numbers
-vim.opt.relativenumber = true -- relative line numbers
-vim.opt.cursorline = true
-vim.opt.wrap = true
-vim.opt.scrolloff = 10
+vim.o.number = true -- line numbers
+vim.o.relativenumber = true -- relative line numbers
+vim.o.cursorline = true
+vim.o.wrap = true
+vim.o.scrolloff = 10
 -- searching
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 -- layout
-vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
-vim.opt.cmdheight = 0 -- 0 for vertical space
-vim.opt.showmode = false
-vim.opt.termguicolors = true
+vim.o.signcolumn = "yes" -- Keep signcolumn on by default
+vim.o.cmdheight = 0 -- 0 for vertical space
+vim.o.showmode = false
+vim.o.termguicolors = true
 -- files
-vim.opt.confirm = true -- prompt to save or discard changes
-vim.opt.undofile = true -- Save undo history
+vim.o.confirm = true -- prompt to save or discard changes
+vim.o.undofile = true -- Save undo history
 -- misc
-vim.opt.breakindent = true -- Enable break indent
-vim.opt.updatetime = 250 -- Decrease update time
-vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
-vim.opt.inccommand = "split" -- live substitutions
+vim.o.breakindent = true -- Enable break indent
+vim.o.updatetime = 250 -- Decrease update time
+vim.o.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.o.inccommand = "split" -- live substitutions
 
 
 -- [[ Basic Keymaps ]]
@@ -58,7 +57,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
 vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>FN", "ofn () {\n}<Esc>kf(i", { desc = "Create Rust Function" })
--- vim.keymap.set("i", "{", "{\n}<Esc>O")
 vim.keymap.set("v", "<leader>(", "da^(<Esc>pa)<Esc>F^cl", { desc = "Surround with brackets and enter front" })
 -- File Operations
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
@@ -88,6 +86,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+
+	-- Keep until comfy
+	{
+		"folke/which-key.nvim",
+		event = "VimEnter",
+		opts = {
+			delay = 0,
+		},
+	},
+
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
@@ -284,6 +292,43 @@ require("lazy").setup({
 		end,
 	},
 
+	-- Autocompletion
+	{
+		"saghen/blink.cmp",
+		event = "VimEnter",
+		version = "1.*",
+		dependencies = {
+			{
+				"L3MON4D3/LuaSnip",
+				version = "2.*",
+				build = (function()
+					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+						return
+					end
+					return "make install_jsregexp"
+				end)(),
+				dependencies = {},
+				opts = {},
+			},
+			"folke/lazydev.nvim",
+		},
+		--- @module 'blink.cmp'
+		--- @type blink.cmp.Config
+		opts = {
+			keymap = { preset = "default" },
+			appearance = { nerd_font_variant = "mono" },
+			completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
+			sources = {
+				default = { "lsp", "path", "snippets", "lazydev" },
+				providers = {
+					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+				},
+			},
+			snippets = { preset = "luasnip" },
+			fuzzy = { implementation = "lua" },
+			signature = { enabled = true },
+		},
+	},
 	{
 		"stevearc/oil.nvim",
 		config = function()
@@ -301,6 +346,68 @@ require("lazy").setup({
 		end,
 	},
 
+    -- Note: I am currently trying out the default colorscheme
+    -- {
+    --     "zenbones-theme/zenbones.nvim",
+    --     -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    --     -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    --     -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    --     dependencies = "rktjmp/lush.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     -- you can set set configuration options here
+    --     config = function()
+    --         LOAD_BG()
+    --         vim.g.zenbones = {
+    --             darken_noncurrent_window = true,
+    --             lighten_noncurrent_window = true
+    --
+    --
+    --
+    --         }
+    --         vim.cmd.colorscheme('zenbones')
+    --     end
+    -- },
+
+	{ -- Collection of various small independent plugins/modules
+		"echasnovski/mini.nvim",
+		config = function()
+			-- Better Around/Inside textobjects
+			--
+			-- Examples:
+			--  - va)  - [V]isually select [A]round [)]paren
+			--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+			--  - ci'  - [C]hange [I]nside [']quote
+			require("mini.ai").setup({ n_lines = 500 })
+
+			-- Add/delete/replace surroundings (brackets, quotes, etc.)
+			--
+			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+			-- - sd'   - [S]urround [D]elete [']quotes
+			-- - sr)'  - [S]urround [R]eplace [)] [']
+			require("mini.surround").setup()
+
+            -- require("mini.pairs").setup()
+
+			-- Simple and easy statusline.
+			--  You could remove this setup call if you don't like it,
+			--  and try some other statusline plugin
+			-- local statusline = require("mini.statusline")
+			-- -- set use_icons to true if you have a Nerd Font
+			-- statusline.setup({ use_icons = vim.g.have_nerd_font })
+			--
+			-- -- You can configure sections in the statusline by overriding their
+			-- -- default behavior. For example, here we set the section for
+			-- -- cursor location to LINE:COLUMN
+			-- ---@diagnostic disable-next-line: duplicate-set-field
+			-- statusline.section_location = function()
+			-- 	return "%2l:%-2v"
+			-- end
+			--
+			-- -- ... and there is more!
+			-- --  Check out: https://github.com/echasnovski/mini.nvim
+		end,
+	},
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -319,8 +426,6 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
-                "rust",
-                "python",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
@@ -351,13 +456,14 @@ require("lazy").setup({
         end,
     },
 
+    'numToStr/Comment.nvim',
     {
       'akinsho/toggleterm.nvim',
       version = "*",
       opts = {
-        size = 65,
+        size = 15,
         open_mapping = [[<C-\>]],
-        direction = 'vertical',
+        direction = 'float',
         float_opts = {
           border = 'curved',
         },
@@ -375,4 +481,3 @@ require("lazy").setup({
     }
 
 })
-LOAD_BG()

@@ -1,0 +1,8 @@
+sway
+swaylock
+swaybg
+alacritty
+waybar
+wofi
+nvim
+gammastep

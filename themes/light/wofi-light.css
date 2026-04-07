@@ -5,8 +5,8 @@
 }
 /* Main window */
 window {
-    background-color: #E8E4E0;
-    border: 1px solid #cccccc;
+    background-color: #d0cdcc;
+    border: 2px solid #908d8c;
     border-radius: 2px;
 }
 /* Outer container */
@@ -17,9 +17,8 @@ window {
 /* Input box */
 #input {
     background-color: transparent;
-    color: #111111;
+    color: #1a1a1a;
     border: none;
-    border-bottom: 1px solid #cccccc;
     padding: 10px 4px;
     margin-bottom: 20px;
     outline: none;
@@ -36,16 +35,16 @@ window {
 /* Individual entries */
 #entry {
     padding: 6px 4px;
-    color: #888888;
+    color: #908d8c;
 }
 /* Hover */
 #entry:hover {
-    color: #111111;
+    color: #1a1a1a;
 }
 /* Selected item */
 #entry:selected {
     background-color: transparent;
-    color: #111111;
+    color: #1a1a1a;
 }
 /* Icons */
 #img {

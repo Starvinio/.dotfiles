@@ -18,16 +18,17 @@ set $term alacritty
 set $browser qutebrowser
 set $menu wofi --show drun 
 
+exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 1.0:0.6
 exec $term
 
 # font
-font pango:JetbrainsMono Nerd Font 10
+font pango:JetbrainsMono Nerd Font 7
 
 
 # layout
-gaps outer 10
-gaps inner 4
-default_border pixel 3
+smart_borders on
+smart_gaps on
+default_border pixel 2
 title_align center
 
 
@@ -52,12 +53,11 @@ input type:keyboard {
 	bindsym $mod+Shift+x    exec swaylock -c 000000 -i /home/$USER/.dotfiles/lock.jpg
     bindsym $mod+Return     exec $term
     bindsym $mod+n exec $term --class Notes -e nvim ~/Text/notes.txt 
+    bindsym $mod+Shift+n exec $term --class Notes -e nvim ~/.dotfiles/TODO.md
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
-    bindsym $mod+o          exec $browser
     bindsym $mod+Shift+c    exec /home/user/.dotfiles/themes/load_theme.sh
     bindsym $mod+F1 exec /home/user/.dotfiles/themes/toggle_theme.sh
-    bindsym $mod+F2 exec gammastep -O 3500
     floating_modifier $mod normal
 
     ### Focus movement
@@ -73,18 +73,21 @@ input type:keyboard {
     bindsym $mod+Shift+$right   move right
 
     # Workspaces
-    bindsym $mod+7 workspace number 1
-    bindsym $mod+8 workspace number 2
-    bindsym $mod+9 workspace number 3
-    bindsym $mod+0 workspace number 4
+    bindsym $mod+u workspace number 1
+    bindsym $mod+i workspace number 2
+    bindsym $mod+o workspace number 3
+    bindsym $mod+p workspace number 4
 
-    bindsym --whole-window $mod+button4 workspace prev
-    bindsym --whole-window $mod+button5 workspace next
+    # Mousecontrol for browsing
+    bindsym --whole-window $mod+button8 focus next
+    bindsym --whole-window $mod+button9 focus prev
+    bindsym --whole-window $mod+shift+button8 workspace prev
+    bindsym --whole-window $mod+shift+button9 workspace next
 
-    bindsym $mod+Shift+7 move container to workspace number 1
-    bindsym $mod+Shift+8 move container to workspace number 2
-    bindsym $mod+Shift+9 move container to workspace number 3
-    bindsym $mod+Shift+0 move container to workspace number 4
+    bindsym $mod+Shift+u move container to workspace number 1
+    bindsym $mod+Shift+i move container to workspace number 2
+    bindsym $mod+Shift+o move container to workspace number 3
+    bindsym $mod+Shift+p move container to workspace number 4
 
     ### Layout
     bindsym $mod+b splith

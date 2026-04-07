@@ -5,8 +5,9 @@ normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
 size = 15
 
 [window]
-padding = {x = 5, y = 5}
+padding = {x = 15, y = 5}
 dynamic_padding = true
+dynamic_title = true
 
 [mouse]
 hide_when_typing = true

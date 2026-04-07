@@ -1,13 +1,14 @@
 * {
     font-family: "JetbrainsMono Nerd Font Propo";
-    font-size: 14px;
+    font-size: 13px;
     min-height: 0;
     margin: 0;
     padding: 0;
 }
 window#waybar {
     background: transparent;
-    color: #111111;
+    color: #706d6c;
+    min-height:0;
 }
 button {
     box-shadow: none;
@@ -26,28 +27,22 @@ button:hover {
     background: transparent;
     border: none;
     box-shadow: none;
-    color: #666677;
+    color: #1a1a1a;
     font-size: 10px;
     transition: color 250ms ease;
 }
 #workspaces button:hover {
-    color: #111111;
+    color: #706d6c;
     background: transparent;
 }
 #workspaces button.focused {
-    color: #333344;
+    color: #1a1a1a;
 }
 #workspaces button.urgent {
-    color: #ff5f57;
+    color: #b03030;
 }
 #mode {
-    padding: 0 8px;
-    color: #957f3f;  /* ebcb8b darkened for light bg readability */
-}
-#window {
-    color: #777777;
-    font-size: 12px;
-    letter-spacing: 0.02em;
+    color: #a05010;
 }
 #custom-updates,
 #network,
@@ -56,64 +51,46 @@ button:hover {
 #memory,
 #clock {
     padding-right: 20px;
-    color: #555555;
 }
 /* ── Clock ────────────────────────────────────────────────────── */
 #clock {
-    color: #444444;
-    font-size: 15px;
+    color: #1a1a1a;
+    font-size: 14px;
     letter-spacing: 0.05em;
     font-weight:bold;
 }
-/* ── Memory ───────────────────────────────────────────────────── */
-#memory {
-    color: #555555;
+/* ── Hover ────────────────────────────────────────────────────── */
+#memory:hover,
+#pulseaudio:hover {
+    color: #1a1a1a;
 }
-#memory:hover {
-    color: #444444;
-}
+
 /* ── Network ──────────────────────────────────────────────────── */
-#network {
-    color: #555555;
-}
 #network.disconnected {
-    color: #ff5f57;
+    color: #b03030;
 }
 /* ── Battery ──────────────────────────────────────────────────── */
-#battery {
-    color: #777777;
-}
-#battery.charging,
-#battery.plugged {
-    color: #666666;
-}
-#battery.good {
-    color: #555555;
-}
 #battery.warning {
-    color: #957f3f;
+    color: #a05010;
 }
 #battery.critical:not(.charging) {
-    color: #ff5f57;
+    color: #b03030;
 }
 /* ── Audio ────────────────────────────────────────────────────── */
-#pulseaudio {
-    color: #555555;
-}
 #pulseaudio.muted {
-    color: #bbbbbb;
+    color: #706d6c;
 }
+/* ── Power ────────────────────────────────────────────────────── */
 #custom-power {
-    color:#555555;
     margin: 3px 0px 5px 20px;
 }
 #custom-power:hover {
-    color: #ff5f57;
+    color: #b03030;
 }
 /* ── Blink animation (for mode) ──────────────────────────────── */
 @keyframes blink {
     to {
-        background-color: #111111;
-        color: #ffffff;
+        background-color: #1a1a1a;
+        color: #f7f3e8;
     }
 }

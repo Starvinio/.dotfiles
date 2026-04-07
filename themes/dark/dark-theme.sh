@@ -13,10 +13,10 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 swaymsg reload
          # class                 border  backgr. text    indicator child_border
-# swaymsg "client.focused          #444444 #444444 #e8e8e8 #444444   #444444"
-# swaymsg "client.focused_inactive #222222 #141414 #888888 #222222   #222222"
-# swaymsg "client.unfocused        #141414 #141414 #555555 #1a1a1a   #000000"
-# swaymsg "client.urgent           #ff5f57 #141414 #ff5f57 #ff5f57   #ff5f57"
+swaymsg "client.focused          #667799 #667799 #f8f8f8 #667799   #667799"
+swaymsg "client.focused_inactive #222222 #141414 #888888 #222222   #222222"
+swaymsg "client.unfocused        #141414 #141414 #555555 #1a1a1a   #000000"
+swaymsg "client.urgent           #ff5f57 #141414 #ff5f57 #ff5f57   #ff5f57"
 swaymsg "output * bg #000000 solid_color"
 
 echo "applied dark theme successfully"

@@ -6,7 +6,6 @@
     padding: 0;
 }
 window#waybar {
-    background-color: #E8E4E0;
     color: #111111;
 }
 button {
@@ -55,6 +54,7 @@ button:hover {
 #pulseaudio,
 #memory,
 #clock {
+    padding-top: 15px;
     padding-right: 20px;
     color: #555555;
 }

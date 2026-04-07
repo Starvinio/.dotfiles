@@ -1,25 +1,28 @@
-# Zenbones light
-[colors.bright]
-black = "#CFC1BA"
-red = "#94253E"
-green = "#3F5A22"
-yellow = "#803D1C"
-blue = "#1D5573"
-magenta = "#7B3B70"
-cyan = "#2B747C"
-white = "#4F5E68"
-[colors.cursor]
-cursor = "#2C363C"
-text = "#F0EDEC"
-[colors.normal]
-black = "#F0EDEC"
-blue = "#286486"
-cyan = "#3B8992"
-green = "#4F6C31"
-magenta = "#88507D"
-red = "#A8334C"
-white = "#2C363C"
-yellow = "#944927"
+# Silkpaper light
 [colors.primary]
-background = "#F0EDEC"
-foreground = "#2C363C"
+background = "#f0edec"
+foreground = "#1a1a1a"
+
+[colors.cursor]
+cursor = "#6f657c"
+text   = "#f7f3e8"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#b03030"
+green   = "#2e6b3e"
+yellow  = "#a05010"
+blue    = "#2c4f7a"
+magenta = "#7a3868"
+cyan    = "#2a6b70"
+white   = "#999980"
+
+[colors.bright]
+black   = "#555545"
+red     = "#cc3535"
+green   = "#3a7a4a"
+yellow  = "#b85a15"
+blue    = "#3a6090"
+magenta = "#8f4a82"
+cyan    = "#337a80"
+white   = "#f7f3e8"
