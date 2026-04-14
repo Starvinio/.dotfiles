@@ -21,7 +21,7 @@ button:hover {
     margin: 5px 0 5px 8px;
 }
 #workspaces button {
-    padding: 0 6px;
+    padding-right: 10px;
     background: transparent;
     border: none;
     box-shadow: none;

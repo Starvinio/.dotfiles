@@ -1,28 +1,31 @@
-# Silkpaper light
 [colors.primary]
+foreground = "#1f2328"
 background = "#f0edec"
-foreground = "#1a1a1a"
 
 [colors.cursor]
-cursor = "#6f657c"
-text   = "#f7f3e8"
+text = "#f6f8fa"
+cursor = "#1f2328"
+
+[colors.selection]
+text = "#1f2328"
+background = "#264f78"
 
 [colors.normal]
-black   = "#1a1a1a"
-red     = "#b03030"
-green   = "#2e6b3e"
-yellow  = "#a05010"
-blue    = "#2c4f7a"
-magenta = "#7a3868"
-cyan    = "#2a6b70"
-white   = "#999980"
+black = "#24292f"
+red = "#cf222e"
+green = "#116329"
+yellow = "#4d2d00"
+blue = "#0969da"
+magenta = "#8250df"
+cyan = "#1b7c83"
+white = "#6e7781"
 
 [colors.bright]
-black   = "#555545"
-red     = "#cc3535"
-green   = "#3a7a4a"
-yellow  = "#b85a15"
-blue    = "#3a6090"
-magenta = "#8f4a82"
-cyan    = "#337a80"
-white   = "#f7f3e8"
+black = "#57606a"
+red = "#a40e26"
+green = "#1a7f37"
+yellow = "#633c01"
+blue = "#218bff"
+magenta = "#a475f9"
+cyan = "#3192aa"
+white = "#8c959f"

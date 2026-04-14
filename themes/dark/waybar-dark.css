@@ -24,11 +24,11 @@ button:hover {
 
 /* ── Workspace dots ───────────────────────────────────────────── */
 #workspaces {
-    margin: 5px 0 5px 8px;
+    margin: 5px 0 5px 10px;
 }
 
 #workspaces button {
-    padding: 0 6px;
+    padding: 0 10px;
     background: transparent;
     border: none;
     box-shadow: none;

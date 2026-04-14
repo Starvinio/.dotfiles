@@ -22,7 +22,7 @@ exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 1.0:0.6
 exec $term
 
 # font
-font pango:JetbrainsMono Nerd Font 7
+font pango:JetbrainsMono Nerd Font 9
 
 
 # layout

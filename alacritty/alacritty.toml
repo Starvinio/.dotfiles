@@ -1,13 +1,18 @@
 general.import = ["~/.config/alacritty/colors.toml"]
 
 [font]
-normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
-size = 15
+size = 17
+
+[font.normal]
+family = "Iosevka"
+style = "Regular"
 
 [window]
-padding = {x = 15, y = 5}
+startup_mode = "Maximized"
+padding = {x = 5, y = 3}
 dynamic_padding = true
-dynamic_title = true
+decorations = "None"
+resize_increments = true
 
 [mouse]
 hide_when_typing = true

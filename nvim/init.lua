@@ -1,27 +1,27 @@
---  NOTE: NEOVIM CONFIG FILE 26-02-26
-
+-- NOTE: NEOVIM CONFIG FILE 09-04-2026
+vim.cmd.colorscheme("mentat2")
 LSP_SERVERS = {
-		clangd = {},
-		basedpyright = {},
-		rust_analyzer = {},
-		lua_ls = {},
-        bashls = {},
+	clangd = {},
+	basedpyright = {},
+	rust_analyzer = {},
+	lua_ls = {},
+	bashls = {},
 }
-local vim=vim
+local vim = vim
 -- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set bg to light/dark according to cache file
 function LOAD_BG()
-    local theme_file = io.open(vim.fn.expand("~/.cache/current-theme"), "r")
-    if theme_file then
-        local theme = theme_file:read("*l")
-        theme_file:close()
-        vim.o.background = theme
-        vim.cmd.colorscheme('mentat2')
-    end
+	local theme_file = io.open(vim.fn.expand("~/.cache/current-theme"), "r")
+	if theme_file then
+		local theme = theme_file:read("*l")
+		theme_file:close()
+		vim.o.background = theme
+	end
 end
+
 -- Tabs
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -31,7 +31,7 @@ vim.opt.expandtab = true
 vim.opt.number = true -- line numbers
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.cursorline = true
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.scrolloff = 10
 -- searching
 vim.opt.ignorecase = true
@@ -50,16 +50,12 @@ vim.opt.updatetime = 250 -- Decrease update time
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
 vim.opt.inccommand = "split" -- live substitutions
 
-
 -- [[ Basic Keymaps ]]
 -- clear search on ESC
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
 -- Escape terminal mode (for floating ter)
 vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { desc = "Exit terminal mode" })
 
-vim.keymap.set("n", "<leader>FN", "ofn () {\n}<Esc>kf(i", { desc = "Create Rust Function" })
--- vim.keymap.set("i", "{", "{\n}<Esc>O")
-vim.keymap.set("v", "<leader>(", "da^(<Esc>pa)<Esc>F^cl", { desc = "Surround with brackets and enter front" })
 -- File Operations
 vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 
@@ -67,7 +63,7 @@ vim.keymap.set("n", "<leader>1", LOAD_BG)
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
-vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "Open diagnostic [Overview]"})
+vim.keymap.set("n", "<leader>o", vim.diagnostic.setloclist, { desc = "Open diagnostic [Overview]" })
 
 -- Yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -81,13 +77,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system({ "git", "clone", "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	"thesimonho/kanagawa-paper.nvim",
+	"nordtheme/vim",
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
@@ -103,7 +105,7 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{ "nvim-tree/nvim-web-devicons"},
+			{ "nvim-tree/nvim-web-devicons" },
 		},
 		config = function()
 			require("telescope").setup({
@@ -204,7 +206,7 @@ require("lazy").setup({
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if
 						client
-						and client:supports_method( vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
+						and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 					then
 						local highlight_augroup =
 							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -249,20 +251,12 @@ require("lazy").setup({
 			vim.diagnostic.config({
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
-				underline = { severity = vim.diagnostic.severity.ERROR },
-				signs = {
-					text = {
-						[vim.diagnostic.severity.ERROR] = "󰅚 ",
-						[vim.diagnostic.severity.WARN] = "󰀪 ",
-						[vim.diagnostic.severity.INFO] = "󰋽 ",
-						[vim.diagnostic.severity.HINT] = "󰌶 ",
-					},
-				},
-				virtual_text = false
+				underline = false,
+				signs = false,
+				virtual_text = false,
 			})
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 
 			local ensure_installed = vim.tbl_keys(LSP_SERVERS or {})
 			vim.list_extend(ensure_installed, {
@@ -285,18 +279,38 @@ require("lazy").setup({
 	},
 
 	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					rust = { "rustfmt" },
+					c = { "clang_format" },
+				},
+
+				format_on_save = function(bufnr)
+					return {
+						timeout_ms = 500,
+						lsp_fallback = true,
+					}
+				end,
+			})
+		end,
+	},
+
+	{
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup({
-			default_file_explorer = true,
-			view_options = {
-				show_hidden = false,
-			},
-			-- Toggle hidden files
-		    keymaps = {
-				["<C-h>"] = "actions.toggle_hidden",
-		    }
-		    })
+				default_file_explorer = true,
+				view_options = {
+					show_hidden = false,
+				},
+				-- Toggle hidden files
+				keymaps = {
+					["<C-h>"] = "actions.toggle_hidden",
+				},
+			})
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open file explorer" })
 		end,
 	},
@@ -319,8 +333,8 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
-                "rust",
-                "python",
+				"rust",
+				"python",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
@@ -341,38 +355,27 @@ require("lazy").setup({
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
 
-    {
-      "norcalli/nvim-colorizer.lua",
-      config = function()
-          require 'colorizer'.setup {
-          '*'; -- Highlight all files, but customize some others.
-          css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
-        }
-        end,
-    },
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({
+				"*", -- Highlight all files, but customize some others.
+				css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
+			})
+		end,
+	},
 
-    {
-      'akinsho/toggleterm.nvim',
-      version = "*",
-      opts = {
-        size = 65,
-        open_mapping = [[<C-\>]],
-        direction = 'vertical',
-        float_opts = {
-          border = 'curved',
-        },
-        shade_terminals = false, 
-      }
-    },
-
-    {
-        'mluders/comfy-line-numbers.nvim',
-        opts = {
-            function ()
-                require('comfy-line-numbers').setup()
-            end
-        }
-    }
-
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			size = 65,
+			open_mapping = [[<C-\>]],
+			direction = "vertical",
+			float_opts = {
+				border = "curved",
+			},
+			shade_terminals = false,
+		},
+	},
 })
-LOAD_BG()
