@@ -1,7 +1,0 @@
-width=30%
-location=top
-term=alacritty
-prompt=
-lines=3
-close_on_focus_loss=true
-single_click=true

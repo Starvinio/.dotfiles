@@ -88,8 +88,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	"thesimonho/kanagawa-paper.nvim",
-	"nordtheme/vim",
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
