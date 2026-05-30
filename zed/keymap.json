@@ -13,8 +13,26 @@
     },
   },
   {
+    "unbind": {
+      "Ctrl-W": "pane::CloseActiveItem",
+    },
+  },
+  {
+    "context": "!SettingsWindow",
+    "unbind": {
+      "ctrl-,": "zed::OpenSettings",
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "unbind": {
+      "ctrl-,": "settings_editor::OpenCurrentFile",
+    },
+  },
+  {
+    "context": "vim_mode == normal",
     "bindings": {
-      "Ctrl-W": null,
+      "g z": "vim::HelixJumpToWord",
     },
   },
 ]

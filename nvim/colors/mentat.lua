@@ -40,19 +40,22 @@ if vim.o.background == "dark" then
     red = "#c05a5a"
     orange = "#b07a3a"
 else
-	bg = "#fdf6e3"
-	bg_subtle = "#eee8d5"
-	bg_float = "#ddd8c5"
-	fg = "#3f555c"
-	fg_muted = "#93a1a1"
-	green = "#4a7a40"
-    comments = "#8a7ea8" -- "#a08b6b" -- "#9b86a8" -- "#997766"
+    bg        = "#f0edec"
+    bg_subtle = "#e9e4e2"
+    bg_float  = "#d0cdcc"
+	fg = "#2c363c"
+	fg_muted = "#8c969c"
+	green = "#2e6b3e"
+    comments = "#785078" 
 	visual = "#d0cdcc"
 	search = "#e8d060"
 	cursearch = "#c8a820"
 	red = "#b03030"
 	orange = "#a05010"
 end
+
+-- This shall be a comment
+-- I am adding this comment to see what a comment looks like
 
 
 -- ─── Editor chrome ──────────────────────────────────────────────────────────
@@ -102,7 +105,8 @@ set(0, "CursorIM", { fg = bg, bg = fg })
 -- ─── Syntax — ──────────────────────────────────────────
 
 local plain = { fg = fg }
-local bold = plain
+--local bold = { fg = fg, bold = true }
+local bold = { fg = fg, bold = false }
 local string = {fg = green}
 local comment = { fg = comments, italic = true }
 

@@ -27,12 +27,12 @@ unset rc
 # Aliases for common use
 alias cr="cargo run"
 alias cb="cargo build"
-alias swayconf="vi ~/.config/sway/config"
-alias htop="htop -C"
-
+alias swayconf="nvim ~/.config/sway/config"
+alias md="cd ~/md/active && nvim ."
 
 # clean ps1
 # PS1='\[\e[32m\]┌──(\[\e[94;1m\]\u\[\e[94m\]@\[\e[94m\]\h\[\e[0;32m\])-[\[\e[38;5;46;1m\]\w\[\e[0;32m\]] [\[\e[32m\]$?\[\e[32m\]]\n\[\e[32m\]╰─\[\e[94;1m\]\$\[\e[0m\] '
 # PS1='\[\e[1;35m\]┌─[\u@\h]─[\w]\n└─\$ \[\e[0m\]'
 PS1='\n\[\033[32m\]\w\n\[\033[0m\]$ '
 
+alias viconf='nvim ~/.dotfiles/nvim/init.lua'

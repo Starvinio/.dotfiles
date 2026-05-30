@@ -8,11 +8,17 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 // And this is a comment
 {
+  "ui_font_family": "JetBrains Mono",
+  "helix_mode": false,
+  "colorize_brackets": false,
+  "buffer_line_height": "comfortable",
+  "indent_guides": {
+    "enabled": false,
+  },
   "git_panel": {
     "button": false,
   },
   "ui_font_size": 16.0,
-  "ui_font_family": "JetBrains Mono",
   "preview_tabs": {
     "enabled": false,
   },
@@ -25,18 +31,19 @@
       "enabled": true,
     },
     "inline": {
-      "enabled": false,
+      "enabled": true,
     },
   },
   "diagnostics_max_severity": "warning",
   "cli_default_open_behavior": "existing_window",
   "restore_on_startup": "launchpad",
   "theme": {
-    "light": "Mentat Light",
-    "dark": "Mentat Dark",
+    "mode": "light",
+    "light": "Modus Operandi",
+    "dark": "Solarized Dark",
   },
   "buffer_font_family": "JetBrains Mono NL",
-  "buffer_font_size": 18.0,
+  "buffer_font_size": 19.0,
   "buffer_font_weight": 400.0,
   "inline_code_actions": false,
   "gutter": {
@@ -77,6 +84,8 @@
     "button": false,
   },
   "status_bar": {
+    "show_active_file": true,
+    "line_endings_button": false,
     "cursor_position_button": true,
     "active_language_button": true,
   },

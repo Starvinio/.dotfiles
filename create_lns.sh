@@ -6,6 +6,9 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 mkdir -p ~/.config/{alacritty,nvim/colors,zed/themes}
 
+# bashrc
+ln -sfn "$DOTFILES_DIR/.bashrc" ~/.bashrc
+
 # alacritty
 ln -sfn "$DOTFILES_DIR/alacritty/alacritty.toml" ~/.config/alacritty/alacritty.toml
 echo "Linked alacritty config"
