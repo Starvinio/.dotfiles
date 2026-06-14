@@ -1,61 +1,31 @@
--- mentat.lua
--- Minimal light colorscheme inspired by solarized light
+-- klong.lua
+-- Minimal light colorscheme inspired by zenbones palette
 -- Adjusted for higher contrast and usability with astigmatism
--- Philosophy: only strings and comments get seperate color. Keywords are bold.
+-- Philosophy: only strings and comments get seperate color. 
+-- Alternative font styles (bold, italic) are avoided
 
 vim.cmd("highlight clear")
 if vim.fn.exists("syntax_on") then
 	vim.cmd("syntax reset")
 end
 
-vim.g.colors_name = "mentat"
+vim.g.colors_name = "klong"
 
 local set = vim.api.nvim_set_hl
-local bg
-local bg_subtle
-local bg_float
-local fg
-local fg_muted
-local green
-local comments
-local visual
-local search
-local cursearch
-local red
-local orange
-
 
 -- ─── Palette ────────────────────────────────────────────────────────────────
-if vim.o.background == "dark" then
-    bg = "#1f2326"
-    bg_subtle = "#262b2e"
-    bg_float = "#2c3134"
-    fg = "#93a1a1"
-    fg_muted = "#7f8c91"
-    green = "#7fa36b"
-    comments = "#657b83"
-    visual = "#3a4044"
-    search = "#6b5a1a"
-    cursearch = "#8a741f"
-    red = "#c05a5a"
-    orange = "#b07a3a"
-else
-    bg        = "#f0edec"
-    bg_subtle = "#e9e4e2"
-    bg_float  = "#d0cdcc"
-	fg = "#2c363c"
-	fg_muted = "#8c969c"
-	green = "#2e6b3e"
-    comments = "#785078" 
-	visual = "#d0cdcc"
-	search = "#e8d060"
-	cursearch = "#c8a820"
-	red = "#b03030"
-	orange = "#a05010"
-end
-
--- This shall be a comment
--- I am adding this comment to see what a comment looks like
+local bg        = "#f0edec"
+local bg_subtle = "#e9e4e2"
+local bg_float  = "#d0cdcc"
+local fg = "#1a1a1a" --"#2c363c"
+local fg_muted = "#8a8a8a"
+local green = "#2e6b3e"
+local comments = "#2c4f7a"--"#785078" 
+local visual = "#d0cdcc"
+local search = "#e8d060"
+local cursearch = "#c8a820"
+local red = "#b03030"
+local orange = "#a05010"
 
 
 -- ─── Editor chrome ──────────────────────────────────────────────────────────
@@ -98,9 +68,10 @@ set(0, "TabLine", { fg = fg_muted, bg = bg_subtle })
 set(0, "TabLineSel", { fg = fg, bg = bg, bold = true })
 set(0, "TabLineFill", { bg = bg_subtle })
 
-set(0, "MatchParen", { fg = fg, bg = bg_float, bold = true })
+set(0, "MatchParen", { fg = fg, bg = search, bold = true })
 set(0, "Cursor", { fg = bg, bg = fg })
 set(0, "CursorIM", { fg = bg, bg = fg })
+
 
 -- ─── Syntax — ──────────────────────────────────────────
 
@@ -108,7 +79,7 @@ local plain = { fg = fg }
 --local bold = { fg = fg, bold = true }
 local bold = { fg = fg, bold = false }
 local string = {fg = green}
-local comment = { fg = comments, italic = true }
+local comment = { fg = comments, italic = false }
 
 -- Comments
 set(0, "Comment", comment)

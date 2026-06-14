@@ -1,3 +1,5 @@
+local vim = vim
+
 -- LEADER KEY AS SPACE
 vim.g.mapleader = " "
 
@@ -22,6 +24,7 @@ opt.mouse = "a"
 opt.scrolloff = 10
 
 opt.undofile = true -- Save undo history
+opt.confirm = true
 opt.swapfile = false
 
 opt.number = true
@@ -29,8 +32,14 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.title = true
 opt.wrap = false
-opt.cmdheight = 0
+opt.breakindent = true
+--opt.cmdheight = 0
 opt.signcolumn = "yes"
+opt.inccommand = "split"
+
+
+-- CUSTOM FUNCTIONS
+
 
 
 
@@ -38,15 +47,29 @@ opt.signcolumn = "yes"
 map("n", "<leader>r", "<cmd>source ~/.dotfiles/nvim/init.lua<CR>")
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Write current buffer" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
-map("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
+
+vim.keymap.set("n", "<leader>uw", function()
+    vim.wo.wrap = not vim.wo.wrap
+    vim.wo.linebreak = vim.wo.wrap
+
+    if vim.wo.wrap then
+        vim.notify("Wrap enabled")
+    else
+        vim.notify("Wrap disabled")
+    end
+end, { desc = "[U]I Toggle [W]rap" })
 
 
 -- PLUGIN IMPORTS
 -- Compare to ~/.local/share/nvim/site/pack/core/opt for cleanup
 vim.pack.add({
+	-- file manager
 	"https://github.com/stevearc/oil.nvim",
+
+	-- file picker
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-telescope/telescope.nvim",
@@ -54,16 +77,25 @@ vim.pack.add({
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
 
+	-- Better navigation
+	"https://github.com/mluders/comfy-line-numbers.nvim",
+
 	-- colorschemes
 	"https://github.com/projekt0n/github-nvim-theme",
-	"https://github.com/dracula/vim",
-	"https://github.com/tanvirtin/monokai.nvim",
 	"https://github.com/miikanissi/modus-themes.nvim",
+	-- look for more
+	-- https://vimcolorschemes.com/i/top/b.light
 })
+
+require "comfy-line-numbers".setup()
 
 -- LSP
 vim.lsp.enable(all_lsps)
-map("n", "<leader>lf", vim.lsp.buf.format, { desc = "[L]sp [F]ormat" })
+
+map("n", "<leader>lf", function()
+	vim.lsp.buf.format()
+	print("Document formatted!")
+end,  { desc = "[L]SP [F]ormat" })
 
 
 
@@ -78,6 +110,7 @@ require "oil".setup({
 		["<C-h>"] = "actions.toggle_hidden",
 	}
 })
+map("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
 
 
 
@@ -91,17 +124,32 @@ map("n", "<leader>sw", pickers.grep_string, { desc = "[S]earch Current [W]ord", 
 map("n", "<leader>sg", pickers.live_grep, { desc = "[S]earch by [G]rep", })
 map("n", "<leader>sr", pickers.resume, { desc = "[S]earch [R]esume", })
 
+
 map("n", "<leader>sh", pickers.help_tags, { desc = "[S]earch [H]elp", })
 map("n", "<leader>sm", pickers.man_pages, { desc = "[S]earch [M]anuals", })
 
--- MARKDOWN
-map("n", "<leader>mfa", function() pickers.find_files({ cwd = "~/md/active" }) end, { desc = "[M]ark[D]own [A]ctive", })
-map("n", "<leader>mga", function() pickers.live_grep({ cwd = "~/md/active" }) end, { desc = "[M]ark[D]own [A]ctive", })
+-- CUSTOM CWD
+map("n", "<leader>sd", function() pickers.find_files({ cwd = "~/.dotfiles" }) end,
+	{ desc = "[S]earch [D]otfiles", })
+map("n", "<leader>mfa", function() pickers.find_files({ cwd = "~/md/active" }) end,
+	{ desc = "[M]arkdown [F]iles [A]ctive", })
+map("n", "<leader>mga", function() pickers.live_grep({ cwd = "~/md/active" }) end,
+	{ desc = "[M]arkdown [G]rep [A]ctive", })
 map("n", "<leader>mfr", function() pickers.find_files({ cwd = "~/md/archive" }) end,
-	{ desc = "[M]ark[D]own [I]nactive", })
-map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/md/archive" }) end, { desc = "[M]ark[D]own [I]nactive", })
+	{ desc = "[M]arkdown [F]iles a[R]chived", })
+map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/md/archive" }) end,
+	{ desc = "[M]arkdown [G]rep a[R]chived", })
 
 
 
 -- POST PLUGIN LOAD CONFIG
-cmd.colorscheme("modus_operandi")
+cmd.colorscheme("klong")
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "text" },
+    callback = function()
+        vim.wo.wrap = true
+        vim.wo.linebreak = true
+        vim.wo.breakindent = true
+    end,
+})
