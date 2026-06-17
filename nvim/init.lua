@@ -33,7 +33,7 @@ opt.cursorline = true
 opt.title = true
 opt.wrap = false
 opt.breakindent = true
---opt.cmdheight = 0
+opt.cmdheight = 0 -- TODO: Find solution for showing important info without > 0
 opt.signcolumn = "yes"
 opt.inccommand = "split"
 
@@ -102,6 +102,13 @@ end,  { desc = "[L]SP [F]ormat" })
 -- OIL
 require "oil".setup({
 	default_file_explorer = true,
+	columns = {
+		"icon",
+		--"permissions",
+		--"size",
+		--"mtime",
+	},
+	constrain_cursor = "name",
 	view_options = {
 		show_hidden = false,
 	},

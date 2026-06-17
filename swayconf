@@ -1,7 +1,7 @@
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS
 exec_always export XDG_CURRENT_DESKTOP=sway
 
-# Keboard layout and rebinding
+### Input settings
 input type:keyboard {
    xkb_layout "eu"
    xkb_options caps:escape
@@ -9,7 +9,12 @@ input type:keyboard {
 input type:mouse {
 	accel_profile flat
 }
-
+input type:touchpad {
+   dwt enabled
+   tap enabled
+   natural_scroll enabled
+   middle_emulation enabled
+}
 
 ### Variables
 set $mod Mod4
@@ -20,35 +25,62 @@ set $right l
 set $term alacritty
 set $menu fuzzel
 
+### Exec on startup
 exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 1.0:0.6
-#output * bg /home/starvinio/Pictures/Wallpapers/bamboo.jpeg fill
 exec $term
 
-# font
+### Layout
 font pango:JetbrainsMono 10
-
-
-# layout
 smart_borders on
 smart_gaps on
-#default_border pixel 2
 title_align center
 
-### Input configuration
-focus_follows_mouse no
+### Color variables
+set $FG "1a1a1a"
+set $BG "f0edec"
+set $BLACK "1a1a1a"
+set $SUBTLE "e9e4e2"
+set $GREY "d0cdcc"
+set $DGREY "706d6c"
+set $GREEN "2e6b3e"
+set $BLUE "2c4f7a"
+set $LBLUE "4c6f9a"
 
-# Only for Laptop
-# input type:touchpad {
-#    dwt enabled
-#    tap enabled
-#    natural_scroll enabled
-#    middle_emulation enabled
-# }
+### background
+output * bg #c0bdbc solid_color
+
+#    class                 	border    bg	    text      indicator c_border
+client.focused          	$LBLUE    $BLUE    	$BG    	  $DGREY    $DGREY
+client.unfocused        	$DGREY    $GREY     $BLACK    $GREY     $GREY
+client.focused_inactive 	4e8b5e    $GREEN    $BG    	  $DGREY    $DGREY
+client.urgent           	b03030    f2eedf    b03030    b03030    b03030
+
+
+## Bar
+bar {
+    #position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+
+	#mode hide
+	#height 34
+
+    status_command ~/.dotfiles/scripts/status.sh
+    colors {
+        statusline $FG
+        background $SUBTLE
+		focused_workspace  $LBLUE $BLUE $BG
+        inactive_workspace $DGREY $GREY $FG
+    }
+}
+
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -c 000000 -i /home/$USER/.dotfiles/lock.jpg
+	bindsym $mod+Shift+x    exec swaylock -c 555555 -i /home/$USER/.dotfiles/static/lock.png
     bindsym $mod+Return     exec $term
-    bindsym $mod+n 			exec $term --class Notes -e nvim ~/md/scratch.md 
+    bindsym $mod+n 			exec $term --class Notes -e nvim
+	bindsym $mod+Shift+n	exec $term --class Notes -e nvim ~/md/scratch.md 
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+c    exec swaymsg reload
@@ -137,39 +169,5 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
 
-
-set $FG "1a1a1a"
-set $BG "f0edec"
-set $BLACK "1a1a1a"
-set $SUBTLE "e9e4e2"
-set $GREY "d0cdcc"
-set $DARK_GREY "403d3c"
-set $GREEN "2e6b3e"
-set $BLUE "2c4f7a"
-
-#class                  border     backgr.    text       indicator  child_border
-client.focused          $DARK_GREY    $BLUE    $BG    2e6b3e    $BLUE
-client.unfocused        $BLACK    $GREY      $BLACK    efe9d8    efe9d8
-client.focused_inactive efe9d8    f2eedf    999980    efe9d8    efe9d8
-client.urgent           b03030    f2eedf    b03030    b03030    b03030
-output * bg #d0cdcc solid_color
-
-# Bar
-bar {
-    #position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-
-	strip_workspace_numbers no
-	mode hide
-    status_command ~/.dotfiles/scripts/status.sh
-    colors {
-        statusline $DARK_GREY
-        background $BG
-		focused_workspace  $BLACK $BLUE $BG
-        inactive_workspace $DARK_GREY $GREY #555555
-    }
-}
 
 include /etc/sway/config.d/*

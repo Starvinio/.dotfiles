@@ -1,0 +1,16 @@
+set default-bg "#F0EDEC"
+set default-fg "#111111"
+
+set statusbar-bg "#E8E4E0"
+set statusbar-fg "#777777"
+
+set inputbar-bg "#E8E4E0"
+set inputbar-fg "#111111"
+
+set notification-bg "#E8E4E0"
+set notification-fg "#111111"
+
+set highlight-color "#957f3f"
+set highlight-active-color "#111111"
+
+set recolor false
