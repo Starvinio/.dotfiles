@@ -34,47 +34,7 @@ font pango:JetbrainsMono 10
 smart_borders on
 smart_gaps on
 title_align center
-
-### Color variables
-set $FG "1a1a1a"
-set $BG "f0edec"
-set $BLACK "1a1a1a"
-set $SUBTLE "e9e4e2"
-set $GREY "d0cdcc"
-set $DGREY "706d6c"
-set $GREEN "2e6b3e"
-set $BLUE "2c4f7a"
-set $LBLUE "4c6f9a"
-
-### background
-output * bg #c0bdbc solid_color
-
-#    class                 	border    bg	    text      indicator c_border
-client.focused          	$LBLUE    $BLUE    	$BG    	  $DGREY    $DGREY
-client.unfocused        	$DGREY    $GREY     $BLACK    $GREY     $GREY
-client.focused_inactive 	4e8b5e    $GREEN    $BG    	  $DGREY    $DGREY
-client.urgent           	b03030    f2eedf    b03030    b03030    b03030
-
-
-## Bar
-bar {
-    #position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-
-	#mode hide
-	#height 34
-
-    status_command ~/.dotfiles/scripts/status.sh
-    colors {
-        statusline $FG
-        background $SUBTLE
-		focused_workspace  $LBLUE $BLUE $BG
-        inactive_workspace $DGREY $GREY $FG
-    }
-}
-
+focus_follows_mouse no
 
 ### Key bindings
 	bindsym $mod+Shift+x    exec swaylock -c 555555 -i /home/$USER/.dotfiles/static/lock.png
@@ -167,6 +127,49 @@ bindsym $mod+r mode "resize"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+
+### Color variables
+set $FG "1a1a1a"
+set $BG "ffffff"
+
+set $BLACK "000000"
+set $GREY "d0cdcc"
+set $DGREY "706d6c"
+
+set $GREEN "22863a"
+set $BLUE "0A3069"
+set $LBLUE "4c6f9a"
+
+### background
+output * bg #c0bdbc solid_color
+
+#    class                 	border    bg	    text      indicator c_border
+client.focused          	$BLACK    $FG    	$BG    	  $DGREY    $FG
+client.unfocused        	$DGREY    $GREY     $FG    $GREY     $GREY
+client.focused_inactive 	$DGREY    $GREY    	$FG    $GREY     $GREY
+client.urgent           	b03030    f2eedf    b03030    b03030    b03030
+
+
+## Bar
+bar {
+    #position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+
+	#mode hide
+	#height 34
+
+    status_command ~/.dotfiles/scripts/status.sh
+    colors {
+        statusline $BG
+        background $FG
+		# 				   border	bg		text
+		focused_workspace  $GREY 	$GREEN 	$BG
+        inactive_workspace $DGREY 	$FG 	$BG
+    }
+}
 
 
 

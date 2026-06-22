@@ -150,7 +150,7 @@ map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/md/archive" }) e
 
 
 -- POST PLUGIN LOAD CONFIG
-cmd.colorscheme("klong")
+cmd.colorscheme("github_light")
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "text" },
