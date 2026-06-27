@@ -32,7 +32,7 @@ echo "> linked tmux"
 
 # neovim init file and colorscheme
 ln -sfn "$DOTFILES_DIR/nvim/init.lua" ~/.config/nvim/init.lua
-ln -sfn "$DOTFILES_DIR/nvim/colors/klong.lua" ~/.config/nvim/colors/klong.lua
+ln -sfn "$DOTFILES_DIR/nvim/colors/nuarb.lua" ~/.config/nvim/colors/nuarb.lua
 echo "> linked neovim"
 
 ln -sfn "$DOTFILES_DIR/zathurarc" ~/.config/zathura/zathurarc

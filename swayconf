@@ -26,11 +26,11 @@ set $term alacritty
 set $menu fuzzel
 
 ### Exec on startup
-exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 1.0:0.6
+exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 1.0:0.4
 exec $term
 
 ### Layout
-font pango:JetbrainsMono 10
+font pango:Iosevka 10
 smart_borders on
 smart_gaps on
 title_align center
@@ -130,14 +130,14 @@ bindsym $mod+r mode "resize"
 
 
 ### Color variables
-set $FG "1a1a1a"
-set $BG "ffffff"
+set $FG "14161b"
+set $BG "f5f5f5"
 
 set $BLACK "000000"
-set $GREY "d0cdcc"
-set $DGREY "706d6c"
+set $GREY "c0c0c0"
+set $DGREY "707070"
 
-set $GREEN "22863a"
+set $GREEN "2e6b3e"
 set $BLUE "0A3069"
 set $LBLUE "4c6f9a"
 
@@ -145,21 +145,16 @@ set $LBLUE "4c6f9a"
 output * bg #c0bdbc solid_color
 
 #    class                 	border    bg	    text      indicator c_border
-client.focused          	$BLACK    $FG    	$BG    	  $DGREY    $FG
-client.unfocused        	$DGREY    $GREY     $FG    $GREY     $GREY
+client.focused          	$BLACK    $FG    	$GREY    	  $DGREY    $FG
+client.unfocused        	$DGREY    $GREY     $DGREY    $GREY     $GREY
 client.focused_inactive 	$DGREY    $GREY    	$FG    $GREY     $GREY
 client.urgent           	b03030    f2eedf    b03030    b03030    b03030
 
 
 ## Bar
 bar {
-    #position top
-
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-
-	#mode hide
-	#height 34
 
     status_command ~/.dotfiles/scripts/status.sh
     colors {
@@ -167,7 +162,7 @@ bar {
         background $FG
 		# 				   border	bg		text
 		focused_workspace  $GREY 	$GREEN 	$BG
-        inactive_workspace $DGREY 	$FG 	$BG
+        inactive_workspace $DGREY 	$FG 	$GREY
     }
 }
 

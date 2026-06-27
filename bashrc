@@ -41,6 +41,7 @@ alias md="cd ~/md/active && nvim ."
 alias mdcommit=commit_markdown
 alias vi="nvim"
 alias viconf='nvim ~/.dotfiles/nvim/init.lua'
+alias skim='tspreed -fkl -w 400'
 
 
 # clean ps1

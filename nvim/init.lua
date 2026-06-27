@@ -41,8 +41,6 @@ opt.inccommand = "split"
 -- CUSTOM FUNCTIONS
 
 
-
-
 -- KEYBINDS
 map("n", "<leader>r", "<cmd>source ~/.dotfiles/nvim/init.lua<CR>")
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Write current buffer" })
@@ -81,8 +79,10 @@ vim.pack.add({
 	"https://github.com/mluders/comfy-line-numbers.nvim",
 
 	-- colorschemes
-	"https://github.com/projekt0n/github-nvim-theme",
 	"https://github.com/miikanissi/modus-themes.nvim",
+	-- too much orange "https://github.com/sainnhe/sonokai",
+	-- too contrasty "https://github.com/w0ng/vim-hybrid",
+	"https://github.com/shaunsingh/nord.nvim",
 	-- look for more
 	-- https://vimcolorschemes.com/i/top/b.light
 })
@@ -150,7 +150,7 @@ map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/md/archive" }) e
 
 
 -- POST PLUGIN LOAD CONFIG
-cmd.colorscheme("github_light")
+cmd.colorscheme("nuarb")
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "text" },
