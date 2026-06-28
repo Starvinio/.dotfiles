@@ -77,14 +77,7 @@ vim.pack.add({
 
 	-- Better navigation
 	"https://github.com/mluders/comfy-line-numbers.nvim",
-
-	-- colorschemes
-	"https://github.com/miikanissi/modus-themes.nvim",
-	-- too much orange "https://github.com/sainnhe/sonokai",
-	-- too contrasty "https://github.com/w0ng/vim-hybrid",
-	"https://github.com/shaunsingh/nord.nvim",
-	-- look for more
-	-- https://vimcolorschemes.com/i/top/b.light
+	"https://github.com/zenbones-theme/zenbones.nvim",
 })
 
 require "comfy-line-numbers".setup()

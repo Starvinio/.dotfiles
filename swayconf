@@ -145,7 +145,7 @@ set $LBLUE "4c6f9a"
 output * bg #c0bdbc solid_color
 
 #    class                 	border    bg	    text      indicator c_border
-client.focused          	$BLACK    $FG    	$GREY    	  $DGREY    $FG
+client.focused          	$BLACK    $FG    	$BG    	  $DGREY    $FG
 client.unfocused        	$DGREY    $GREY     $DGREY    $GREY     $GREY
 client.focused_inactive 	$DGREY    $GREY    	$FG    $GREY     $GREY
 client.urgent           	b03030    f2eedf    b03030    b03030    b03030
@@ -158,7 +158,7 @@ bar {
 
     status_command ~/.dotfiles/scripts/status.sh
     colors {
-        statusline $BG
+        statusline $GREY
         background $FG
 		# 				   border	bg		text
 		focused_workspace  $GREY 	$GREEN 	$BG
