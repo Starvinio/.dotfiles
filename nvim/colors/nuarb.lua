@@ -1,6 +1,6 @@
 -- nuarb.lua
 -- Minimal light colorscheme
--- Only strings and blue get a separate color; everything else is plain fg.
+-- Only strings and comments get a separate color; everything else is plain fg.
 
 vim.cmd("highlight clear")
 if vim.fn.exists("syntax_on") == 1 then
@@ -17,10 +17,10 @@ local set = vim.api.nvim_set_hl
 local bg        = "#f5f5f5"
 local bg_subtle = "#e9e9e9"
 local bg_float  = "#d1d5da"
-local fg        = "#14161B"
+local fg        = "#24292f"
 local fg_muted  = "#8a8a8a"
-local green     = "#2e6b3e"
-local blue  	= "#2c4f7a"
+local green     = "#116329"
+local blue  	= "#3f5d9a"
 local red       = "#b03030"
 local orange    = "#a05010"
 local visual    = "#c6d8ec"
@@ -32,7 +32,7 @@ local plain      = { fg = fg }
 local muted      = { fg = fg_muted }
 local str        = { fg = green }
 local comment    = { fg = blue }
-local md_heading = { fg = blue, bold = true }
+local md_heading = { fg = green, bold = true }
 
 -- ─── Editor chrome ──────────────────────────────────────────────────────────
 set(0, "Normal",       { fg = fg, bg = bg })
@@ -52,7 +52,7 @@ set(0, "Visual",       { bg = visual })
 set(0, "VisualNOS",    { bg = visual })
 
 set(0, "Search",       { fg = fg, bg = search })
-set(0, "IncSearch",    { fg = fg, bg = cursearch, bold = true })
+set(0, "IncSearch",    { fg = bg, bg = cursearch, bold = true })
 set(0, "CurSearch",    { fg = bg, bg = cursearch, bold = true })
 set(0, "Substitute",   { link = "IncSearch" })
 
@@ -307,20 +307,20 @@ set(0, "@markup.environment.name", plain)
 set(0, "@markup.link",                       plain)
 set(0, "@markup.link.markdown_inline",       plain)
 set(0, "@markup.link.label.markdown_inline", plain)
-set(0, "@markup.link.url",                   { fg = fg, underline = true })
+set(0, "@markup.link.url",                   { fg = blue, underline = true })
 
 -- Markup lists
 set(0, "@markup.list",           plain)
 set(0, "@markup.list.checked",   { fg = green })
 set(0, "@markup.list.unchecked", plain)
 
--- Markup raw / code — green, matching String
-set(0, "@markup.raw",                    str)
-set(0, "@markup.raw.markdown_inline",    str)
-set(0, "@markup.raw.block",              str)
-set(0, "@markup.raw.delimiter.markdown", str)
+-- Markup raw / code — blue, matching Comment
+set(0, "@markup.raw",                    comment)
+set(0, "@markup.raw.markdown_inline",    comment)
+set(0, "@markup.raw.block",              comment)
+set(0, "@markup.raw.delimiter.markdown", comment)
 
--- Markup headings — bold blue, matching Comment
+-- Markup headings — bold green, matching String
 set(0, "@markup.heading",              md_heading)
 set(0, "@markup.heading.1.markdown",   md_heading)
 set(0, "@markup.heading.2.markdown",   md_heading)
@@ -464,7 +464,7 @@ set(0, "markdownOrderedListMarker",   plain)
 set(0, "markdownRule",                plain)
 
 set(0, "markdownLinkText",            plain)
-set(0, "markdownUrl",                 { fg = fg, underline = true })
+set(0, "markdownUrl",                 { fg = blue, underline = true })
 set(0, "markdownId",                  plain)
 set(0, "markdownIdDeclaration",       plain)
 set(0, "markdownIdDelimiter",         plain)
@@ -481,9 +481,9 @@ set(0, "mkdCode",          str)
 set(0, "mkdCodeDelimiter", str)
 set(0, "mkdCodeStart",     str)
 set(0, "mkdCodeEnd",       str)
-set(0, "mkdInlineURL",     { fg = fg, underline = true })
-set(0, "mkdLink",          { fg = fg, underline = true })
-set(0, "mkdURL",           { fg = fg, underline = true })
+set(0, "mkdInlineURL",     { fg = blue, underline = true })
+set(0, "mkdLink",          { fg = blue, underline = true })
+set(0, "mkdURL",           { fg = blue, underline = true })
 set(0, "mkdListItemLine",  plain)
 set(0, "mkdRule",          plain)
 

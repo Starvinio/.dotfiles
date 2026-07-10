@@ -1,4 +1,7 @@
 # .bashrc
+#
+
+EDITOR=nvim
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -25,11 +28,17 @@ fi
 unset rc
 
 commit_markdown() {
-	cd ~/md
+	cd ~/MD
 	git add .
 	git commit 
-	echo "commited markdown changes. \n\
-		returning to previous directory."
+	printf "\ncommited markdown changes.\nreturning to previous directory."
+	cd -
+}
+
+push_markdown() {
+	cd ~/MD
+	git push
+	printf "\npushed markdown changes.\nreturning to previous directory."
 	cd -
 }
 
@@ -37,8 +46,12 @@ commit_markdown() {
 alias cr="cargo run"
 alias cb="cargo build"
 alias swayconf="nvim ~/.config/sway/config"
-alias md="cd ~/md/active && nvim ."
+
+# Markdown aliases
+alias md="cd ~/MD/active && nvim ."
 alias mdcommit=commit_markdown
+alias mdpush=push_markdown
+
 alias vi="nvim"
 alias viconf='nvim ~/.dotfiles/nvim/init.lua'
 alias skim='tspreed -fkl -w 400'

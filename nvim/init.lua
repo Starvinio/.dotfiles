@@ -77,7 +77,9 @@ vim.pack.add({
 
 	-- Better navigation
 	"https://github.com/mluders/comfy-line-numbers.nvim",
-	"https://github.com/zenbones-theme/zenbones.nvim",
+
+	-- Theme
+	"https://github.com/ellisonleao/gruvbox.nvim",
 })
 
 require "comfy-line-numbers".setup()
@@ -131,13 +133,13 @@ map("n", "<leader>sm", pickers.man_pages, { desc = "[S]earch [M]anuals", })
 -- CUSTOM CWD
 map("n", "<leader>sd", function() pickers.find_files({ cwd = "~/.dotfiles" }) end,
 	{ desc = "[S]earch [D]otfiles", })
-map("n", "<leader>mfa", function() pickers.find_files({ cwd = "~/md/active" }) end,
+map("n", "<leader>mfa", function() pickers.find_files({ cwd = "~/MD/active" }) end,
 	{ desc = "[M]arkdown [F]iles [A]ctive", })
-map("n", "<leader>mga", function() pickers.live_grep({ cwd = "~/md/active" }) end,
+map("n", "<leader>mga", function() pickers.live_grep({ cwd = "~/MD/active" }) end,
 	{ desc = "[M]arkdown [G]rep [A]ctive", })
-map("n", "<leader>mfr", function() pickers.find_files({ cwd = "~/md/archive" }) end,
+map("n", "<leader>mfr", function() pickers.find_files({ cwd = "~/MD/archive" }) end,
 	{ desc = "[M]arkdown [F]iles a[R]chived", })
-map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/md/archive" }) end,
+map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/MD/archive" }) end,
 	{ desc = "[M]arkdown [G]rep a[R]chived", })
 
 
