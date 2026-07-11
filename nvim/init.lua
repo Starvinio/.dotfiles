@@ -69,7 +69,6 @@ vim.pack.add({
 
 	-- file picker
 	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-telescope/telescope.nvim",
 
 	-- lsp
@@ -78,8 +77,6 @@ vim.pack.add({
 	-- Better navigation
 	"https://github.com/mluders/comfy-line-numbers.nvim",
 
-	-- Theme
-	"https://github.com/ellisonleao/gruvbox.nvim",
 })
 
 require "comfy-line-numbers".setup()
@@ -98,19 +95,15 @@ end,  { desc = "[L]SP [F]ormat" })
 require "oil".setup({
 	default_file_explorer = true,
 	columns = {
-		"icon",
-		--"permissions",
-		--"size",
-		--"mtime",
+		--"icon",
+		"permissions",
+		"size",
+		"mtime",
 	},
 	constrain_cursor = "name",
 	view_options = {
 		show_hidden = false,
 	},
-	-- Toggle hidden files
-	keymaps = {
-		["<C-h>"] = "actions.toggle_hidden",
-	}
 })
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
 

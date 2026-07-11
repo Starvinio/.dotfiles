@@ -22,7 +22,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term alacritty
+set $term foot
 set $menu fuzzel
 
 ### Exec on startup
@@ -31,7 +31,7 @@ exec $term
 
 ### Layout
 default_border normal 1
-font pango:Iosevka 10
+font pango:CommitMono 10
 smart_borders off
 smart_gaps on
 title_align center
@@ -166,7 +166,7 @@ bar {
  
 # class                 	border    bg	    text      indicator c_border
 client.focused          	$DGREY    $BG    	$FG    	  $DGREY    $GREY
-client.unfocused        	$GREY    $GREY     $DGREY    $GREY     $BG
+client.unfocused        	$GREY     $GREY     $DGREY    $GREY     $BG
 client.focused_inactive 	$DGREY    $GREY    	$FG       $GREY     $GREY
 client.urgent           	b03030    f2eedf    b03030    b03030    b03030
 

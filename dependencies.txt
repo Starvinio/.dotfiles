@@ -1,6 +1,9 @@
-alacritty
+foot
+fuzzel
+sway
 nvim
 tmux
+zathura
 rust-analyzer
 clangd
 lua-ls

@@ -18,7 +18,7 @@ local bg        = "#f5f5f5"
 local bg_subtle = "#e9e9e9"
 local bg_float  = "#d1d5da"
 local fg        = "#24292f"
-local fg_muted  = "#8a8a8a"
+local fg_muted  = "#84898f"
 local green     = "#116329"
 local blue  	= "#3f5d9a"
 local red       = "#b03030"
@@ -488,8 +488,8 @@ set(0, "mkdListItemLine",  plain)
 set(0, "mkdRule",          plain)
 
 -- ─── Oil.nvim ───────────────────────────────────────────────────────────────
-set(0, "OilDir",     str)
-set(0, "OilDirIcon", str)
+set(0, "OilDir",     { fg = blue, bold = true } )
+--set(0, "OilDirIcon", str)
 
 -- ─── gitsigns.nvim ──────────────────────────────────────────────────────────
 set(0, "GitSignsAdd",    { fg = green,  bg = bg })

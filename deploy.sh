@@ -22,9 +22,9 @@ echo "> linked fuzzel"
 ln -sfn "$DOTFILES_DIR/bashrc" ~/.bashrc
 echo "> linked bashrc"
 
-# alacritty
-ln -sfn "$DOTFILES_DIR/alacritty.toml" ~/.config/alacritty/alacritty.toml
-echo "> linked alacritty"
+# foot
+ln -sfn "$DOTFILES_DIR/foot.ini" ~/.config/foot/foot.ini
+echo "> linked foot"
 
 # tmux 
 ln -sfn "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
