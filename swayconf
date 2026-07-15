@@ -32,7 +32,6 @@ exec $term
 ### Layout
 default_border normal 1
 font pango:CommitMono 10
-smart_borders off
 smart_gaps on
 title_align center
 focus_follows_mouse no
@@ -42,7 +41,7 @@ focus_follows_mouse no
 	bindsym $mod+Shift+x    exec swaylock -c 555555 -i /home/$USER/.dotfiles/static/lock.png
     bindsym $mod+Return     exec $term
     #bindsym $mod+n 			exec $term --class Notes -e nvim
-	bindsym $mod+Shift+n	exec $term --class Notes -e nvim ~/MD/scratch.md 
+	bindsym $mod+Shift+n	exec $term nvim ~/MD/scratch.md 
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+c    exec swaymsg reload
@@ -149,6 +148,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
 
+	position bottom
     status_command ~/.dotfiles/scripts/status.sh
 	colors {
 	  background $GREY

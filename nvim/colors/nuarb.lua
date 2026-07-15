@@ -150,7 +150,7 @@ set(0, "Delimiter",    plain)
 set(0, "Debug",        plain)
 set(0, "Underlined",   plain)
 set(0, "Ignore",       plain)
-set(0, "Todo",         { fg = fg, bg = bg_subtle })
+set(0, "Todo",         { fg = bg, bg = blue })
 
 -- ─── Diagnostics & errors ───────────────────────────────────────────────────
 set(0, "Error",      { fg = red })

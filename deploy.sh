@@ -7,35 +7,27 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "[deploy.sh]"
 
-mkdir -p ~/.config/{alacritty,nvim/colors,sway,fuzzel}
-echo "> created directories"
+mkdir -vp ~/.config/{foot,zathura,nvim/colors,sway,fuzzel}
 
 # sway
-ln -sfn "$DOTFILES_DIR/swayconf" ~/.config/sway/config
-echo "> linked sway"
+ln -sfnv "$DOTFILES_DIR/swayconf" ~/.config/sway/config
 
 # fuzzel
-ln -sfn "$DOTFILES_DIR/fuzzel.ini" ~/.config/fuzzel/fuzzel.ini
-echo "> linked fuzzel"
+ln -sfnv "$DOTFILES_DIR/fuzzel.ini" ~/.config/fuzzel/fuzzel.ini
 
 # bashrc
-ln -sfn "$DOTFILES_DIR/bashrc" ~/.bashrc
-echo "> linked bashrc"
+ln -sfnv "$DOTFILES_DIR/bashrc" ~/.bashrc
 
 # foot
-ln -sfn "$DOTFILES_DIR/foot.ini" ~/.config/foot/foot.ini
-echo "> linked foot"
+ln -sfnv "$DOTFILES_DIR/foot.ini" ~/.config/foot/foot.ini
 
 # tmux 
-ln -sfn "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
-echo "> linked tmux"
+ln -sfnv "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
 
 # neovim init file and colorscheme
-ln -sfn "$DOTFILES_DIR/nvim/init.lua" ~/.config/nvim/init.lua
-ln -sfn "$DOTFILES_DIR/nvim/colors/nuarb.lua" ~/.config/nvim/colors/nuarb.lua
-echo "> linked neovim"
+ln -sfnv "$DOTFILES_DIR/nvim/init.lua" ~/.config/nvim/init.lua
+ln -sfnv "$DOTFILES_DIR/nvim/colors/nuarb.lua" ~/.config/nvim/colors/nuarb.lua
 
-ln -sfn "$DOTFILES_DIR/zathurarc" ~/.config/zathura/zathurarc
-echo "> linked zathura"
+ln -sfnv "$DOTFILES_DIR/zathurarc" ~/.config/zathura/zathurarc
 
 echo "All dotfiles successfully linked."

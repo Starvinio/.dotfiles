@@ -42,6 +42,8 @@ push_markdown() {
 	cd -
 }
 
+alias la="ls -la"
+
 # Aliases for common use
 alias cr="cargo run"
 alias cb="cargo build"

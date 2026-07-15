@@ -4,7 +4,7 @@ local vim = vim
 vim.g.mapleader = " "
 
 -- LSP Table
-local all_lsps = {
+local lsp_table = {
 	"lua_ls",
 	"clangd",
 	"rust_analyzer",
@@ -76,13 +76,12 @@ vim.pack.add({
 
 	-- Better navigation
 	"https://github.com/mluders/comfy-line-numbers.nvim",
-
 })
 
 require "comfy-line-numbers".setup()
 
 -- LSP
-vim.lsp.enable(all_lsps)
+vim.lsp.enable(lsp_table)
 
 map("n", "<leader>lf", function()
 	vim.lsp.buf.format()
