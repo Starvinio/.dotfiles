@@ -57,6 +57,7 @@ alias mdpush=push_markdown
 alias vi="nvim"
 alias viconf='nvim ~/.dotfiles/nvim/init.lua'
 alias skim='tspreed -fkl -w 400'
+alias fastfetch='echo "get to work you lazy shit"'
 
 
 # clean ps1

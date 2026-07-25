@@ -7,7 +7,7 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "[deploy.sh]"
 
-mkdir -vp ~/.config/{foot,zathura,nvim/colors,sway,fuzzel}
+mkdir -vp ~/.config/{foot,,nvim/colors,sway,fuzzel,zathura,zed}
 
 # sway
 ln -sfnv "$DOTFILES_DIR/swayconf" ~/.config/sway/config
@@ -28,6 +28,10 @@ ln -sfnv "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
 ln -sfnv "$DOTFILES_DIR/nvim/init.lua" ~/.config/nvim/init.lua
 ln -sfnv "$DOTFILES_DIR/nvim/colors/nuarb.lua" ~/.config/nvim/colors/nuarb.lua
 
+# zathura 
 ln -sfnv "$DOTFILES_DIR/zathurarc" ~/.config/zathura/zathurarc
+
+# zed
+ln -sfnv "$DOTFILES_DIR/zed/settings.json" ~/.config/zed/settings.json
 
 echo "All dotfiles successfully linked."

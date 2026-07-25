@@ -1,0 +1,130 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+// And this is a comment
+{
+  "ui_font_family": "Iosevka Etoile",
+  "helix_mode": false,
+  "colorize_brackets": false,
+  "buffer_line_height": "standard",
+  "indent_guides": {
+    "enabled": false,
+  },
+  "git_panel": {
+    "button": false,
+  },
+  "ui_font_size": 16.0,
+  "preview_tabs": {
+    "enabled": false,
+  },
+  "prettier": {
+    "allowed": true,
+  },
+  "diagnostics": {
+    "button": true,
+    "lsp_pull_diagnostics": {
+      "enabled": true,
+    },
+    "inline": {
+      "enabled": true,
+    },
+  },
+  "diagnostics_max_severity": "warning",
+  "cli_default_open_behavior": "existing_window",
+  "restore_on_startup": "launchpad",
+  "theme": {
+    "mode": "light",
+    "light": "GitHub Light",
+    "dark": "GitHub Dark Dimmed",
+  },
+  "buffer_font_family": "Iosevka",
+  "buffer_font_size": 20.0,
+  "buffer_font_weight": 400.0,
+  "buffer_font_features": {
+    "calt": false
+  },
+  "inline_code_actions": false,
+  "gutter": {
+    "runnables": false,
+    "folds": false,
+  },
+  "toolbar": {
+    "selections_menu": false,
+    "quick_actions": false,
+    "breadcrumbs": false,
+  },
+  "agent": {
+    "button": false,
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "cursor_blink": false,
+  "tab_bar": {
+    "show": false,
+  },
+  "title_bar": {
+    "show_user_picture": false,
+    "show_user_menu": false,
+    "show_menus": false,
+    "show_branch_status_icon": false,
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+  },
+  "debugger": {
+    "button": false,
+  },
+  "search": {
+    "button": false,
+  },
+  "terminal": {
+    "font_size": 20.0,
+    "font_family": "Inconsolata",
+    "copy_on_select": true,
+    "show_count_badge": false,
+    "button": false,
+  },
+  "status_bar": {
+    "show_active_file": true,
+    "line_endings_button": false,
+    "cursor_position_button": true,
+    "active_language_button": true,
+  },
+  "base_keymap": "VSCode",
+  "vim": {
+    "use_system_clipboard": "never",
+  },
+  "relative_line_numbers": "enabled",
+  "project_panel": {
+    "button": false,
+    "dock": "right",
+    "default_width": 300.0,
+    "auto_fold_dirs": false,
+  },
+  "outline_panel": {
+    "dock": "right",
+    "button": false,
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
+  "git": {
+    "git_gutter": "hide",
+    "enable_status": true,
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "disable_ai": true,
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+}
