@@ -39,11 +39,11 @@
   "restore_on_startup": "launchpad",
   "theme": {
     "mode": "light",
-    "light": "GitHub Light",
+    "light": "Alabaster",
     "dark": "GitHub Dark Dimmed",
   },
-  "buffer_font_family": "Iosevka",
-  "buffer_font_size": 20.0,
+  "buffer_font_family": "CommitMono",
+  "buffer_font_size": 18.0,
   "buffer_font_weight": 400.0,
   "buffer_font_features": {
     "calt": false

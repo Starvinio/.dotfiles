@@ -43,9 +43,10 @@ opt.inccommand = "split"
 
 -- KEYBINDS
 map("n", "<leader>r", "<cmd>source ~/.dotfiles/nvim/init.lua<CR>")
-map("n", "<leader>w", "<cmd>w<CR>", { desc = "Write current buffer" })
+--map("n", "<leader>w", "<cmd>w<CR>", { desc = "Write current buffer" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
+map("n", "<leader>td", "<cmd>find TODO.md<CR>") -- Clear search highlights
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
 
