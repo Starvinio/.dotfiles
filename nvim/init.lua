@@ -74,12 +74,7 @@ vim.pack.add({
 
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
-
-	-- Better navigation
-	"https://github.com/mluders/comfy-line-numbers.nvim",
 })
-
-require "comfy-line-numbers".setup()
 
 -- LSP
 vim.lsp.enable(lsp_table)
