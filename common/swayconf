@@ -31,7 +31,7 @@ exec $term
 
 ### Layout
 default_border normal 1
-font pango:Iosevka Etoile 10
+font pango:Iosevka 10.5
 smart_gaps on
 title_align center
 focus_follows_mouse no

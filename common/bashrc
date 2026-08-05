@@ -31,14 +31,14 @@ commit_markdown() {
 	cd ~/MD
 	git add .
 	git commit 
-	printf "\ncommited markdown changes.\nreturning to previous directory."
+	printf "\ncommited markdown changes.\nreturning to previous directory: "
 	cd -
 }
 
 push_markdown() {
 	cd ~/MD
 	git push
-	printf "\npushed markdown changes.\nreturning to previous directory."
+	printf "\npushed markdown changes.\nreturning to previous directory: "
 	cd -
 }
 
