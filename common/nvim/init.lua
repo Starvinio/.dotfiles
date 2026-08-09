@@ -119,8 +119,9 @@ map("n", "<leader>sh", pickers.help_tags, { desc = "[S]earch [H]elp", })
 map("n", "<leader>sm", pickers.man_pages, { desc = "[S]earch [M]anuals", })
 
 -- CUSTOM CWD
-map("n", "<leader>sd", function() pickers.find_files({ cwd = "~/.dotfiles" }) end,
-	{ desc = "[S]earch [D]otfiles", })
+--map("n", "<leader>sd", function() pickers.find_files({ cwd = "~/.dotfiles" }) end,
+--alias swayconf="nvim ~/.config/sway/config"
+	--{ desc = "[S]earch [D]otfiles", })
 map("n", "<leader>mfa", function() pickers.find_files({ cwd = "~/MD/active" }) end,
 	{ desc = "[M]arkdown [F]iles [A]ctive", })
 map("n", "<leader>mga", function() pickers.live_grep({ cwd = "~/MD/active" }) end,
