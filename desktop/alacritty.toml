@@ -1,0 +1,21 @@
+general.import = [
+	"~/.config/alacritty/theme.toml"
+]
+
+[font]
+size = 15
+
+[font.normal]
+family = "Iosevka Term"
+style = "Regular"
+
+[window]
+padding = {x = 10}
+dynamic_padding = true
+
+[scrolling]
+history = 0
+
+[mouse]
+hide_when_typing = true
+
