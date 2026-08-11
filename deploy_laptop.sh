@@ -24,9 +24,6 @@ ln -sfnv "$DOTFILES/scripts/status_laptop.sh" ~/.config/sway/status.sh
 # fuzzel
 ln -sfnv "$DESKTOP/fuzzel.ini" ~/.config/fuzzel/fuzzel.ini
 
-# bashrc
-ln -sfnv "$COMMON/bashrc" ~/.bashrc
-
 # alacritty
 ln -sfnv "$COMMON/theme.toml" ~/.config/alacritty/theme.toml
 ln -sfnv "$LAPTOP/alacritty.toml" ~/.config/alacritty/alacritty.toml

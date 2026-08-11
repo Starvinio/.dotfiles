@@ -58,3 +58,5 @@ alias fastfetch='echo "get to work you lazy shit"'
 # PS1='\[\e[1;35m\]┌─[\u@\h]─[\w]\n└─\$ \[\e[0m\]'
 PS1='\n\[\033[32m\]\w\n\[\033[0m\]$ '
 
+eval "$(zoxide init bash)"
+
