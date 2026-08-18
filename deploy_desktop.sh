@@ -13,7 +13,7 @@ ln -sfnv "$COMMON/sway/config" ~/.config/sway/config
 ln -sfnv "$COMMON/sway/colors.conf" ~/.config/sway/colors.conf
 ln -sfnv "$COMMON/sway/keybinds.conf" ~/.config/sway/keybinds.conf
 ln -sfnv "$COMMON/sway/bar.conf" ~/.config/sway/bar.conf
-ln -sfnv "$DESKTOP/sway/input.conf" ~/.config/sway/input.conf
+ln -sfnv "$DESKTOP/sway.dev.conf" ~/.config/sway/dev.conf
 ln -sfnv "$DOTFILES/scripts/status_desktop.sh" ~/.config/sway/status.sh
 
 # fuzzel

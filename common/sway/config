@@ -1,4 +1,4 @@
-include ~/.config/sway/input.conf
+include ~/.config/sway/dev.conf
 include ~/.config/sway/colors.conf
 include ~/.config/sway/keybinds.conf
 include ~/.config/sway/bar.conf
@@ -8,7 +8,6 @@ exec $term
 
 ### Layout
 default_border normal 1
-font pango:Iosevka Aile 10.5
 smart_gaps on
 title_align center
 focus_follows_mouse no

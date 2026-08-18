@@ -42,78 +42,122 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."donbravias" = {
     isNormalUser = true;
     description = "Marvin Braun";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-programs.sway = {
-	enable = true;
-	wrapperFeatures.gtk = true;
+  services.pipewire = {
+  	enable = true;
+	alsa.enable = true;
+	pulse.enable = true;
+  };
 
-	extraPackages = with pkgs; [
-		alacritty
-		fuzzel
-		wl-clipboard
-		grim
-		slurp
-		gammastep
-	];
+
+  services.keyd = {
+  	enable=true;
+
+	keyboards.default = {
+		ids = [ "*" ];
+		
+		settings.main = {
+			capslock = "esc";
+			esc = "capslock";
+		};
+	};
+  };
+
+  xdg.portal = {
+  enable = true;
+  wlr.enable = true;
+
 };
+
+
+	programs.sway = {
+		enable = true;
+		wrapperFeatures.gtk = true;
+
+		extraPackages = with pkgs; [
+			brightnessctl
+			pulseaudio
+			swaylock
+			fuzzel
+			wl-clipboard
+			grim
+			slurp
+			gammastep
+			mako
+		];
+
+		extraSessionCommands = ''
+		export XCURSOR_THEME=Bibata-Modern-Classic
+		export XCURSOR_SIZE=24
+	  '';
+	};
+
+	programs.thunar.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim
-	tmux
+  	# system / cli
+    wget
+    git
+	ripgrep
+	killall
+	fastfetch
 	tealdeer
 
-	zathura
-	zathuraPkgs.zathura_pdf_poppler
+	# working environment
+    neovim
+	tmux
 
-	fastfetch
-	thunar
+	# languages & LSP
 	rustc
-	rust-analyzer
 	cargo
+	rust-analyzer
 	gcc
 	lua-language-server
+
+	# desktop applications
+	alacritty
+	zathura
+	zathuraPkgs.zathura_pdf_poppler
+	anki
 	firefox
-    wget
-	killall
-	ripgrep
-    git
-    qutebrowser
+	thunar
+	obs-studio
+
+	bibata-cursors
   ];
 
   fonts.packages = with pkgs; [
-		iosevka-bin
 		commit-mono
+		noto-fonts
+		noto-fonts-color-emoji
   ];
 
 
   programs.bash = {
+  	#promptInit = ''#PS1="\[\e[1;35m\]┌─[\u]\[\033[32m\][\W]\n└─\$ \[\e[0m\]"''
+  	promptInit = ''PS1="\n\[\033[32m\]\w\n\[\033[0m\]\$ "'';
   	shellAliases = {
 		vi = "nvim";
 		la = "ls -la";
-		nxrs = "sudo nixos-rebuild switch";
+		rebuild = "sudo nixos-rebuild switch";
 	};
   };
 
   environment.variables = {
   	EDITOR = "nvim";
+	VISUAL = "nvim";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
