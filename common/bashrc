@@ -42,20 +42,21 @@ push_markdown() {
 	cd -
 }
 
-alias la="ls -la"
-
 # Aliases for common use
+alias la="ls -la"
 alias cr="cargo run"
 alias cb="cargo build"
 alias md="cd ~/MD/active && nvim ."
 alias vi="nvim"
 alias skim='tspreed -fkl -w 400'
 alias fastfetch='echo "get to work you lazy shit"'
+alias mathevorkurs="firefox ~/Documents/websites/mo.mathematik.uni-stuttgart.de/kurse/kurs9/index_full.html"
+
 
 
 # clean ps1
 # PS1='\[\e[32m\]┌──(\[\e[94;1m\]\u\[\e[94m\]@\[\e[94m\]\h\[\e[0;32m\])-[\[\e[38;5;46;1m\]\w\[\e[0;32m\]] [\[\e[32m\]$?\[\e[32m\]]\n\[\e[32m\]╰─\[\e[94;1m\]\$\[\e[0m\] '
-# PS1='\[\e[1;35m\]┌─[\u@\h]─[\w]\n└─\$ \[\e[0m\]'
+#PS1='\[\e[1;35m\]┌─[\u@\h]─[\w]\n└─\$ \[\e[0m\]'
 PS1='\n\[\033[32m\]\w\n\[\033[0m\]$ '
 
 eval "$(zoxide init bash)"

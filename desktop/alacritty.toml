@@ -3,10 +3,10 @@ general.import = [
 ]
 
 [font]
-size = 16
+size = 15
 
 [font.normal]
-family = "Fantasque Sans Mono"
+family = "Iosevka Term"
 style = "Regular"
 
 [window]
