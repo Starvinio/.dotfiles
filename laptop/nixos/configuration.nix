@@ -8,7 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+	  <home-manager/nixos>
     ];
+
+	home-manager.useGlobalPkgs = true;
+	home-manager.useUserPackages = true;
+	home-manager.users.donbravias = import ./home.nix;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -73,36 +78,20 @@
 	};
   };
 
-  xdg.portal = {
-  enable = true;
-  wlr.enable = true;
 
-};
+	services.displayManager.gdm.enable = true;
+	services.desktopManager.gnome.enable = true;
+
+	services.gnome.core-apps.enable = false;
+	services.gnome.core-developer-tools.enable = false;
+	services.gnome.games.enable = false;
+
+	environment.gnome.excludePackages = with pkgs; [
+		gnome-tour
+		gnome-user-docs
+	];
 
 
-	programs.sway = {
-		enable = true;
-		wrapperFeatures.gtk = true;
-
-		extraPackages = with pkgs; [
-			brightnessctl
-			pulseaudio
-			swaylock
-			fuzzel
-			wl-clipboard
-			grim
-			slurp
-			gammastep
-			mako
-		];
-
-		extraSessionCommands = ''
-		export XCURSOR_THEME=Bibata-Modern-Classic
-		export XCURSOR_SIZE=24
-	  '';
-	};
-
-	programs.thunar.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -125,6 +114,7 @@
 	rust-analyzer
 	gcc
 	lua-language-server
+	nil
 
 	# desktop applications
 	alacritty
@@ -139,26 +129,15 @@
   ];
 
   fonts.packages = with pkgs; [
-		commit-mono
+		recursive
+		jetbrains-mono
+		maple-mono.truetype
+		maple-mono.Normal-TTF
+		fantasque-sans-mono
 		noto-fonts
 		noto-fonts-color-emoji
   ];
 
-
-  programs.bash = {
-  	#promptInit = ''#PS1="\[\e[1;35m\]┌─[\u]\[\033[32m\][\W]\n└─\$ \[\e[0m\]"''
-  	promptInit = ''PS1="\n\[\033[32m\]\w\n\[\033[0m\]\$ "'';
-  	shellAliases = {
-		vi = "nvim";
-		la = "ls -la";
-		rebuild = "sudo nixos-rebuild switch";
-	};
-  };
-
-  environment.variables = {
-  	EDITOR = "nvim";
-	VISUAL = "nvim";
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

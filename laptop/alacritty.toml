@@ -3,11 +3,10 @@ general.import = [
 ]
 
 [font]
-size = 16
+size = 15
 
 [font.normal]
-family = "Recursive Mn Lnr St"
-style = "Regular"
+family = "Maple Mono Normal"
 
 [window]
 padding = {x = 10}

@@ -8,6 +8,7 @@ local lsp_table = {
 	"lua_ls",
 	"clangd",
 	"rust_analyzer",
+	"nil"
 }
 
 -- LOCAL BINDINGS FOR CONCISENESS

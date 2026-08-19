@@ -11,6 +11,7 @@ mkdir -vp ~/.config/{foot,,nvim/colors,sway,fuzzel,zathura,zed}
 
 # nixos 
 sudo ln -sfnv "$LAPTOP/nixos/configuration.nix" /etc/nixos/configuration.nix
+sudo ln -sfnv "$LAPTOP/nixos/home.nix" /etc/nixos/home.nix
 sudo ln -sfnv "$LAPTOP/nixos/hardware-configuration.nix" /etc/nixos/hardware-configuration.nix
 
 # sway
