@@ -6,11 +6,11 @@ general.import = [
 size = 16
 
 [font.normal]
-family = "CommitMono"
+family = "Recursive Mn Lnr St"
 style = "Regular"
 
 [window]
-#padding = {x = 10}
+padding = {x = 10}
 dynamic_padding = true
 
 [scrolling]

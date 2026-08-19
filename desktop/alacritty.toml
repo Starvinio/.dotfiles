@@ -6,7 +6,7 @@ general.import = [
 size = 14
 
 [font.normal]
-family = "CommitMono"
+family ="Recursive Mn Lnr St"
 style = "Regular"
 
 [window]
