@@ -15,6 +15,7 @@ local lsp_table = {
 local opt = vim.opt
 local map = vim.keymap.set
 local cmd = vim.cmd
+
 local tab_len = 4
 
 
@@ -30,11 +31,12 @@ opt.swapfile = false
 
 opt.number = true
 opt.relativenumber = true
-opt.cursorline = true
+--opt.cursorline = true
 opt.title = true
 opt.wrap = false
 opt.breakindent = true
 opt.cmdheight = 0 -- TODO: Find solution for showing important info without > 0
+opt.winborder = "bold"
 opt.signcolumn = "yes"
 opt.inccommand = "split"
 
@@ -135,8 +137,10 @@ map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/MD/archive" }) e
 
 
 -- POST PLUGIN LOAD CONFIG
-cmd.colorscheme("nuarb")
+cmd.colorscheme("sonokai")
 
+
+-- CUSTOM FILETYPE HANDLING
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "text" },
     callback = function()

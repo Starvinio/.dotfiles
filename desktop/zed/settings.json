@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 // And this is a comment
 {
-  "ui_font_family": "Iosevka",
+  //"ui_font_family": "Iosevka",
   "helix_mode": false,
   "colorize_brackets": false,
   "buffer_line_height": "standard",
@@ -42,8 +42,8 @@
     "light": "GitHub Light",
     "dark": "One Dark",
   },
-  "buffer_font_family": "Iosevka",
-  "buffer_font_size": 20.0,
+  "buffer_font_family": "Maple Mono Normal",
+  "buffer_font_size": 18.0,
   "buffer_font_weight": 400.0,
   "buffer_font_features": {
     "calt": false

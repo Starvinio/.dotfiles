@@ -7,39 +7,21 @@ COMMON="$DOTFILES/common"
 DESKTOP="$DOTFILES/desktop"
 LAPTOP="$DOTFILES/laptop"
 
-mkdir -vp ~/.config/{foot,,nvim/colors,sway,fuzzel,zathura,zed}
-
-# nixos 
-sudo ln -sfnv "$LAPTOP/nixos/configuration.nix" /etc/nixos/configuration.nix
-sudo ln -sfnv "$LAPTOP/nixos/home.nix" /etc/nixos/home.nix
-sudo ln -sfnv "$LAPTOP/nixos/hardware-configuration.nix" /etc/nixos/hardware-configuration.nix
-
-# sway
-ln -sfnv "$COMMON/sway/config" ~/.config/sway/config
-ln -sfnv "$COMMON/sway/colors.conf" ~/.config/sway/colors.conf
-ln -sfnv "$COMMON/sway/keybinds.conf" ~/.config/sway/keybinds.conf
-ln -sfnv "$COMMON/sway/bar.conf" ~/.config/sway/bar.conf
-ln -sfnv "$LAPTOP/sway.dev.conf" ~/.config/sway/dev.conf
-ln -sfnv "$DOTFILES/scripts/status_laptop.sh" ~/.config/sway/status.sh
-
-# fuzzel
-ln -sfnv "$LAPTOP/fuzzel.ini" ~/.config/fuzzel/fuzzel.ini
+mkdir -vp ~/.config/{alacritty,zathura,zed}
 
 # alacritty
-ln -sfnv "$COMMON/theme.toml" ~/.config/alacritty/theme.toml
 ln -sfnv "$LAPTOP/alacritty.toml" ~/.config/alacritty/alacritty.toml
+
+# ghostty
+ln -sfnv "$LAPTOP/config.ghostty" ~/.config/ghostty/config.ghostty
 
 # tmux 
 ln -sfnv "$COMMON/tmux.conf" ~/.tmux.conf
 
-# neovim init file and colorscheme
-ln -sfnv "$COMMON/nvim/init.lua" ~/.config/nvim/init.lua
-ln -sfnv "$COMMON/nvim/colors/nuarb.lua" ~/.config/nvim/colors/nuarb.lua
+# entire neovim configuration directory
+ln -sfnv "$COMMON/nvim" ~/.config/nvim
 
 # zathura 
 ln -sfnv "$COMMON/zathurarc" ~/.config/zathura/zathurarc
-
-# zed
-ln -sfnv "$DESKTOP/zed/settings.json" ~/.config/zed/settings.json
 
 echo "All dotfiles linked."

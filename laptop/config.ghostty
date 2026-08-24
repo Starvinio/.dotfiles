@@ -1,0 +1,12 @@
+# font
+font-family = "Maple Mono Normal"
+font-size = 15
+font-feature = -calt 
+window-title-font-family = "Maple Mono Normal"
+
+theme = Sonokai
+#gtk-titlebar-hide-when-maximized = true
+gtk-titlebar-style = tabs
+maximize
+
+mouse-hide-while-typing

@@ -1,7 +1,3 @@
-general.import = [
-	"~/.config/alacritty/theme.toml"
-]
-
 [font]
 size = 15
 
@@ -17,4 +13,8 @@ history = 0
 
 [mouse]
 hide_when_typing = true
+
+[colors.primary]
+background = "#000000"
+foreground = "#d5d5d5"
 
