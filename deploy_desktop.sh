@@ -19,8 +19,7 @@ ln -sfnv "$DESKTOP/alacritty.toml" ~/.config/alacritty/alacritty.toml
 ln -sfnv "$COMMON/tmux.conf" ~/.tmux.conf
 
 # neovim init file and colorscheme
-ln -sfnv "$COMMON/nvim/init.lua" ~/.config/nvim/init.lua
-ln -sfnv "$COMMON/nvim/colors/nuarb.lua" ~/.config/nvim/colors/nuarb.lua
+ln -sfnv "$COMMON/nvim/" ~/.config/nvim/
 
 # zathura 
 ln -sfnv "$COMMON/zathurarc" ~/.config/zathura/zathurarc

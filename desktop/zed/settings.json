@@ -9,6 +9,9 @@
 // And this is a comment
 {
   //"ui_font_family": "Iosevka",
+  "ui_font_family": "JetBrains Mono",
+  "icon_theme": "Zed (Default)",
+  "buffer_font_weight": 350.0,
   "helix_mode": false,
   "colorize_brackets": false,
   "buffer_line_height": "standard",
@@ -19,9 +22,6 @@
     "button": false,
   },
   "ui_font_size": 18.0,
-  "preview_tabs": {
-    "enabled": false,
-  },
   "prettier": {
     "allowed": true,
   },
@@ -40,11 +40,10 @@
   "theme": {
     "mode": "dark",
     "light": "GitHub Light",
-    "dark": "One Dark",
+    "dark": "Sonokai",
   },
-  "buffer_font_family": "Maple Mono Normal",
+  "buffer_font_family": "Maple Mono Normal NL",
   "buffer_font_size": 18.0,
-  "buffer_font_weight": 400.0,
   "buffer_font_features": {
     "calt": false
   },
@@ -65,7 +64,7 @@
   },
   "cursor_blink": false,
   "tab_bar": {
-    "show": false,
+    "show": true,
   },
   "title_bar": {
     "show_user_picture": false,

@@ -13,6 +13,8 @@
 
 ## Terminal
 - [ ] Try Ghostty and compare to tmux for my usecase (write pro con list)
+ - [ ] Ghostty for main use
+ - [ ] Tmux for remote use
 
 ## Things to add to dotfiles
 - ~/Project fuzzy search script (also full `~` directory search)
