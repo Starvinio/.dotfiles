@@ -1,10 +1,11 @@
 # font
 font-family = "Maple Mono Normal"
-font-size = 15
+font-size = 15.7
 font-feature = -calt 
 window-title-font-family = "Maple Mono Normal"
 
 theme = Sonokai
+window-theme = ghostty
 #gtk-titlebar-hide-when-maximized = true
 gtk-titlebar-style = tabs
 maximize

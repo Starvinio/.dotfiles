@@ -36,7 +36,7 @@ opt.title = true
 opt.wrap = false
 opt.breakindent = true
 opt.cmdheight = 0 -- TODO: Find solution for showing important info without > 0
-opt.winborder = "bold"
+opt.winborder = "rounded"
 opt.signcolumn = "yes"
 opt.inccommand = "split"
 
@@ -77,7 +77,14 @@ vim.pack.add({
 
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
+
+	--"https://github.com/gbprod/nord.nvim",
+	"https://github.com/shaunsingh/nord.nvim",
+
+	"https://github.com/zenbones-theme/zenbones.nvim",
+	"https://github.com/rktjmp/lush.nvim",
 })
+
 
 -- LSP
 vim.lsp.enable(lsp_table)
@@ -137,7 +144,7 @@ map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/MD/archive" }) e
 
 
 -- POST PLUGIN LOAD CONFIG
-cmd.colorscheme("sonokai")
+cmd.colorscheme("nuarb-ansi")
 
 
 -- CUSTOM FILETYPE HANDLING
