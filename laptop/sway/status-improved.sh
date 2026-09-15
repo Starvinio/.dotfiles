@@ -22,13 +22,13 @@ icon_bat() {
 bat_color() {
 	local cap=$1 status=$2
 	if [ "$status" = "Charging" ]; then
-		echo "#a6e3a1"   # green
+		echo "#718b7e"   # green
 	elif [ "$cap" -le 15 ]; then
-		echo "#f38ba8"   # red
+		echo "#95686b"   # red
 	elif [ "$cap" -le 35 ]; then
-		echo "#f9e2af"   # yellow
+		echo "#92876f"   # yellow
 	else
-		echo "#cdd6f4"   # default fg
+		echo "#668589"   # default fg
 	fi
 }
 
@@ -42,19 +42,20 @@ icon_vol() {
 }
 
 while true; do
-	mem=$(free --giga -h | awk '/Mem:/ {print $3}')
+	read -r _ _ mem _ < <(free --giga -h | grep Mem:)
 
 	vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n1)
 	muted=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
 
-	(( bright=$(brightnessctl get) / 4 ))
+	read -r raw_bright < /sys/class/backlight/*/brightness 2>/dev/null || raw_bright=0
+	(( bright = raw_bright / 4 ))
 
-	bat=$(cat /sys/class/power_supply/BAT0/capacity)
-	bat_status=$(cat /sys/class/power_supply/BAT0/status)
+	read -r bat < /sys/class/power_supply/BAT0/capacity 2>/dev/null || bat=0
+	read -r bat_status < /sys/class/power_supply/BAT0/status 2>/dev/null || bat_status="Unknown"
 
-	date_str=$(date +'%d.%m.%Y %H:%M')
+	printf -v date_str '%(%d.%m.%Y %H:%M)T' -1
 
-	printf ',[{"full_text":"MEM %s","color":"#a6adc8"},{"full_text":"%s %s","color":"#89b4fa"},{"full_text":"☀︎ %s", "color": "#b6bd58"},{"full_text":"%s %s%%","color":"%s"},{"full_text":"%s"}]\n' \
+	printf ',[{"full_text":"MEM %s","color":"#668589"},{"full_text":"%s %s","color":"#607f8e"},{"full_text":"☀︎ %s", "color": "#92876f"},{"full_text":"%s %s%%","color":"%s"},{"full_text":"%s"}]\n' \
 		"$mem" \
 		"$(icon_vol "$muted")" "$vol" \
 		"$bright" \

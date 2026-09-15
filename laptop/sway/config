@@ -21,9 +21,10 @@ set $right l
 set $term footclient
 set $menu fuzzel
 set $status ~/.config/sway/status-improved.sh
+set $swaylock_conf ~/.config/sway/swaylock.config
 
 ### Exec on startup
-exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 1.0:0.4
+exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 0.8:0.2
 exec_always mako
 exec foot --server
 
@@ -39,7 +40,7 @@ focus_follows_mouse no
 
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -c 000000 
+	bindsym $mod+Shift+x    exec swaylock -C $swaylock_conf
     bindsym $mod+Return     exec $term
 	bindsym $mod+n	exec $term nvim ~/MD/scratch.md 
     bindsym $mod+Shift+q    kill
@@ -147,7 +148,8 @@ mode "$mode_system" {
 
 
 set $FG #839496
-
+set $LBLUE #607f8e
+set $DBLUE #304f5e
 
 ## Bar
 bar {
@@ -157,13 +159,13 @@ bar {
 	position bottom
     status_command ~/.config/sway/status-improved.sh
 	colors {
-#	  background $FG
+	  background #000000
 	  statusline $FG
 #	  # class		      border	bg	    text
-#	  focused_workspace   #073642 #002b36  	$FG
+	  focused_workspace   $LBLUE  $DBLUE  	$FG
 #	  inactive_workspace  #000000       #000000   	$FG
 #	  urgent_workspace    #FF5555  #FF5555 	#F8F8F2
-#	  binding_mode        #FF5555  #FF5555 	#F8F8F2
+	  binding_mode        #95686b  #65383b 	$FG
 	}
 }
 
@@ -171,7 +173,7 @@ bar {
 # output * bg #d1d5da solid_color
  
 # class                 	border    bg	    text      indicator c_border
-#client.focused          	$DGREY    $BG    	$FG    	  $DGREY    $GREY
+client.focused          	$LBLUE    $DBLUE    $FG    	  $LBLUE    $LBLUE
 #client.unfocused        	$GREY     $GREY     $DGREY    $GREY     $BG
 #client.focused_inactive 	$DGREY    $GREY    	$FG       $GREY     $GREY
 #client.urgent           	b03030    f2eedf    b03030    b03030    b03030
