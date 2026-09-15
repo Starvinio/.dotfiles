@@ -3,12 +3,15 @@ local vim = vim
 -- LEADER KEY AS SPACE
 vim.g.mapleader = " "
 
+
 -- LSP Table
 local lsp_table = {
+	--[[
 	"lua_ls",
 	"clangd",
 	"rust_analyzer",
 	"nil"
+	]]--
 }
 
 -- LOCAL BINDINGS FOR CONCISENESS
@@ -29,9 +32,9 @@ opt.undofile = true -- Save undo history
 opt.confirm = true
 opt.swapfile = false
 
-opt.number = true
-opt.relativenumber = true
---opt.cursorline = true
+opt.number = false
+opt.relativenumber = false
+opt.cursorline = true
 opt.title = true
 opt.wrap = false
 opt.breakindent = true
@@ -78,11 +81,7 @@ vim.pack.add({
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
 
-	--"https://github.com/gbprod/nord.nvim",
-	"https://github.com/shaunsingh/nord.nvim",
-
-	"https://github.com/zenbones-theme/zenbones.nvim",
-	"https://github.com/rktjmp/lush.nvim",
+	"https://github.com/rickharris/catppuccin-solarized",
 })
 
 

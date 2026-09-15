@@ -5,6 +5,7 @@ size = 15
 family = "Maple Mono Normal"
 
 [window]
+#opacity = 0.0
 padding = {x = 10}
 dynamic_padding = true
 
@@ -15,6 +16,6 @@ history = 0
 hide_when_typing = true
 
 [colors.primary]
-background = "#000000"
-foreground = "#d5d5d5"
+#background = "#000000"
+foreground = "#b5b5b5"
 

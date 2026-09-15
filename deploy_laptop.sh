@@ -7,19 +7,16 @@ COMMON="$DOTFILES/common"
 DESKTOP="$DOTFILES/desktop"
 LAPTOP="$DOTFILES/laptop"
 
-mkdir -vp ~/.config/{alacritty,zathura,zed}
-
-# alacritty
-ln -sfnv "$LAPTOP/alacritty.toml" ~/.config/alacritty/alacritty.toml
-
-# ghostty
-ln -sfnv "$LAPTOP/config.ghostty" ~/.config/ghostty/config.ghostty
+mkdir -vp ~/.config/{zathura}
 
 # tmux 
-ln -sfnv "$COMMON/tmux.conf" ~/.tmux.conf
+#ln -sfnv "$COMMON/tmux.conf" ~/.tmux.conf
 
 # entire neovim configuration directory
 ln -sfnv "$COMMON/nvim" ~/.config/nvim
+
+# entire foot configuration directory
+ln -sfnv "$LAPTOP/foot" ~/.config/foot
 
 # zathura 
 ln -sfnv "$COMMON/zathurarc" ~/.config/zathura/zathurarc

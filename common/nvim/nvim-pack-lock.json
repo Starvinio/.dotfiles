@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "catppuccin-solarized": {
+      "rev": "12c004cde3f36cb1d57242f1e6aac46b09a0e5b4",
+      "src": "https://github.com/rickharris/catppuccin-solarized"
+    },
     "everforest": {
       "rev": "85a86eb62409e3ec88713bff3d1b9d7374e112e4",
       "src": "https://github.com/sainnhe/everforest"
