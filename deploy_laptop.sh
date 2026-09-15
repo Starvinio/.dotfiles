@@ -18,6 +18,8 @@ ln -sfnv "$COMMON/nvim" ~/.config/nvim
 # entire foot configuration directory
 ln -sfnv "$LAPTOP/foot" ~/.config/foot
 
+ln -sfnv "$LAPTOP/sway" ~/.config/sway
+
 # zathura 
 ln -sfnv "$COMMON/zathurarc" ~/.config/zathura/zathurarc
 
