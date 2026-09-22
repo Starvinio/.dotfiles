@@ -2,12 +2,21 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec_always export XDG_CURRENT_DESKTOP=sway
 
 ### Input settings
+input type:keyboard {
+   xkb_layout "eu"
+
+#   xkb_options caps:escape  # already set by keyd
+}
+
+### Input settings
 input type:mouse {
 	accel_profile flat
 }
 input type:touchpad {
    dwt enabled
+   dwtp enabled
    tap enabled
+   tap_button_map lrm
    natural_scroll enabled
    middle_emulation enabled
 }
@@ -19,13 +28,15 @@ set $down j
 set $up k
 set $right l
 set $term footclient
-set $menu fuzzel
-set $status ~/.config/sway/status-improved.sh
-set $swaylock_conf ~/.config/sway/swaylock.config
+set $menu wmenu-run -f "Maple Mono 12"
+
+# PATHS
+set $P_STATUS ~/.config/sway/status-improved.sh
+set $P_SWAYLOCK_CONF ~/.config/sway/swaylock.config
 
 ### Exec on startup
-exec_always gammastep -l 51.49:9.14 -t 6500:3000 -b 0.8:0.2
-exec_always mako
+exec_always gammastep -l 51.49:9.14 -t 6500:3000
+exec_always mako # notification daemon
 exec foot --server
 
 ### Layout
@@ -40,9 +51,10 @@ focus_follows_mouse no
 
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -C $swaylock_conf
+	bindsym $mod+Shift+x    exec swaylock -C $P_SWAYLOCK_CONF
     bindsym $mod+Return     exec $term
-	bindsym $mod+n	exec $term nvim ~/MD/scratch.md 
+	bindsym $mod+n			exec $term nvim ~/MD/scratch.md 
+	bindsym $mod+F1			exec $term nvim ~/MD/active/workflow/sway_setup.md
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+c    exec swaymsg reload
@@ -158,6 +170,7 @@ bar {
 
 	position bottom
     status_command ~/.config/sway/status-improved.sh
+    #status_command ~/Code/smollbarr/smollbarr
 	colors {
 	  background #000000
 	  statusline $FG

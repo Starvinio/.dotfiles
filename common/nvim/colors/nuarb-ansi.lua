@@ -1,5 +1,4 @@
--- nuarb.lua
--- Minimal ANSI-reliant light colorscheme
+-- nuarb.lua Minimal ANSI-reliant light colorscheme
 -- Relying on terminal emulator's 16-color palette
 
 vim.cmd("highlight clear")
@@ -17,7 +16,7 @@ local bg        = "NONE"           -- Default background (translucent / terminal
 local bg_subtle = 8              -- Light Gray (White)
 local bg_float  = "NONE"              -- Light Gray (White)
 local fg        = "NONE"           -- Default foreground (terminal default)
-local fg_muted  = 8              -- Bright Black (Dark Gray)
+local fg_muted  = 7              -- Bright Black (Dark Gray)
 local green     = 2              -- Green
 local blue      = 4              -- Blue
 local red       = 1              -- Red
@@ -26,12 +25,14 @@ local visual    = 8              -- Light Grey
 local search    = 3              -- Yellow
 local cursearch = 5              -- Magenta
 
+
 -- ─── Reused specs ───────────────────────────────────────────────────────────
 local plain      = { ctermfg = fg }
 local muted      = { ctermfg = fg_muted }
-local str        = { ctermfg = green }
+local str        = { ctermfg = 3 }
 local comment    = { ctermfg = blue }
 local md_heading = { ctermfg = green, bold = true }
+local md_math 	 = { ctermfg = 5, ctermbg=bg_subtle, bold = false}
 
 -- ─── Editor chrome ──────────────────────────────────────────────────────────
 set(0, "Normal",       { ctermfg = fg, ctermbg = bg })
@@ -55,7 +56,7 @@ set(0, "IncSearch",    { ctermfg = 15, ctermbg = cursearch, bold = true })
 set(0, "CurSearch",    { ctermfg = 15, ctermbg = cursearch, bold = true })
 set(0, "Substitute",   { link = "IncSearch" })
 
-set(0, "StatusLine",     { ctermfg = fg, ctermbg = bg_subtle })
+set(0, "StatusLine",     { ctermfg = fg_muted, ctermbg = bg_subtle })
 set(0, "StatusLineNC",   { ctermfg = fg_muted, ctermbg = bg })
 set(0, "StatusLineTerm", { ctermfg = bg_subtle, ctermbg = fg_muted })
 set(0, "StatusLineTermNC", { ctermfg = fg_muted, ctermbg = bg_subtle })
@@ -285,7 +286,7 @@ set(0, "@markup.italic",          { italic = true })
 set(0, "@markup.strikethrough",   { strikethrough = true })
 set(0, "@markup.underline",       { underline = true })
 set(0, "@markup.quote",           plain)
-set(0, "@markup.math",            plain)
+set(0, "@markup.math",            md_math)
 set(0, "@markup.environment",     plain)
 set(0, "@markup.environment.name", plain)
 
@@ -336,7 +337,7 @@ set(0, "@text.diff.delete",       { ctermfg = red })
 set(0, "@text.emphasis",          { italic = true })
 set(0, "@text.environment",       plain)
 set(0, "@text.environment.name",  plain)
-set(0, "@text.math",              plain)
+set(0, "@text.math",              md_math)
 set(0, "@text.note",              comment)
 set(0, "@text.strike",            { strikethrough = true })
 set(0, "@text.strong",            { bold = true })
@@ -418,6 +419,9 @@ set(0, "markdownHeadingRule", md_heading)
 set(0, "markdownCode",          str)
 set(0, "markdownCodeBlock",     str)
 set(0, "markdownCodeDelimiter", str)
+
+set(0, "markdownMath", md_math)
+set(0, "markdownMathInline", md_math)
 
 set(0, "markdownItalic",     { ctermfg = fg, italic = true })
 set(0, "markdownBold",       { ctermfg = fg, bold = true })
