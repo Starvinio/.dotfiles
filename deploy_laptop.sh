@@ -21,6 +21,6 @@ ln -sfnv "$LAPTOP/foot" ~/.config/foot
 ln -sfnv "$LAPTOP/sway" ~/.config/sway
 
 # zathura 
-ln -sfnv "$COMMON/zathurarc" ~/.config/zathura/zathurarc
+ln -sfnv "$COMMON/zathura" ~/.config/zathura
 
 echo "All dotfiles linked."
