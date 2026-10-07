@@ -3,7 +3,7 @@ exec_always export XDG_CURRENT_DESKTOP=sway
 
 ### Input settings
 input type:keyboard {
-   xkb_layout "eu"
+   xkb_layout "de"
 
 #   xkb_options caps:escape  # already set by keyd
 }
@@ -28,7 +28,7 @@ set $down j
 set $up k
 set $right l
 set $term footclient
-set $menu wmenu-run -f "Maple Mono 12"
+set $menu fuzzel
 
 # PATHS
 set $P_STATUS ~/.config/sway/status-improved.sh
@@ -64,8 +64,12 @@ focus_follows_mouse no
 ### Key bindings
 	bindsym $mod+Shift+x    exec swaylock -fC $P_SWAYLOCK_CONF
     bindsym $mod+Return     exec $term
-	bindsym $mod+n			exec $term nvim ~/MD/scratch.md 
-	bindsym $mod+F1			exec $term nvim ~/MD/active/workflow/sway_setup.md
+	bindsym $mod+n			exec ~/.config/sway/calcurse-fuzzel-todo.sh
+	bindsym $mod+shift+n	exec $term calcurse
+	bindsym $mod+F1			exec $term nvim ~/MD/todo.md 
+	bindsym $mod+F2			exec $term nvim ~/MD/research.md 
+	bindsym $mod+T			exec $term nvim -O ~/MD/scratch.md ~/MD/todo.md ~/MD/research.md
+	bindsym $mod+F12		exec $term nvim ~/MD/active/workflow/sway_setup.md
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+c    exec swaymsg reload
@@ -113,7 +117,7 @@ focus_follows_mouse no
     bindsym $mod+space 			focus mode_toggle
 
 	# Set coding size manually
-	bindsym $mod+F12 			move position center
+	bindsym $mod+c 			move position center
 
 	# screenshot
     bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy

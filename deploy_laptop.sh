@@ -20,6 +20,11 @@ ln -sfnv "$LAPTOP/foot" ~/.config/foot
 
 ln -sfnv "$LAPTOP/sway" ~/.config/sway
 
+ln -sfnv "$COMMON/fuzzel/" ~/.config/fuzzel
+
+ln -sfnv "$COMMON/calcurse/" ~/.config/calcurse
+
+
 # zathura 
 ln -sfnv "$COMMON/zathura" ~/.config/zathura
 
