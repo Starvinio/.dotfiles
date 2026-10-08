@@ -28,7 +28,7 @@ set $down j
 set $up k
 set $right l
 set $term footclient
-set $menu fuzzel
+set $menu fuzzel --terminal=$term
 
 # PATHS
 set $P_STATUS ~/.config/sway/status-improved.sh
@@ -64,11 +64,9 @@ focus_follows_mouse no
 ### Key bindings
 	bindsym $mod+Shift+x    exec swaylock -fC $P_SWAYLOCK_CONF
     bindsym $mod+Return     exec $term
+    bindsym $mod+numbersign exec ~/.config/sway/fuzzel-exec.sh
 	bindsym $mod+n			exec ~/.config/sway/calcurse-fuzzel-todo.sh
 	bindsym $mod+shift+n	exec $term calcurse
-	bindsym $mod+F1			exec $term nvim ~/MD/todo.md 
-	bindsym $mod+F2			exec $term nvim ~/MD/research.md 
-	bindsym $mod+T			exec $term nvim -O ~/MD/scratch.md ~/MD/todo.md ~/MD/research.md
 	bindsym $mod+F12		exec $term nvim ~/MD/active/workflow/sway_setup.md
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu

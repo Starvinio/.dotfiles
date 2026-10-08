@@ -18,7 +18,3 @@ END:VTODO
 END:VCALENDAR
 EOF
 
-# Optional: Run your data sync script in the background if it exists
-if [ -x "$HOME/.local/share/calcurse/sync.sh" ]; then
-    "$HOME/.local/share/calcurse/sync.sh" >/dev/null 2>&1 &
-fi
