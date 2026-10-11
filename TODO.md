@@ -5,3 +5,5 @@
 
 ## Browsers
 - [ ] Firefox Vimium Setup(?)
+
+## SCRIPTS
