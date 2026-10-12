@@ -54,8 +54,8 @@ exec swayidle -w \
 
 ### Layout
 default_border normal 1
-seat seat0 xcursor_theme Bibata-Modern-Classic 24
-font pango:Maple Mono 10
+seat seat0 xcursor_theme phinger-cursors-dark 24
+font pango:iosevka 10
 smart_borders on
 title_align center
 focus_follows_mouse no

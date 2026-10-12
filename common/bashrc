@@ -1,4 +1,5 @@
-# .bashrc
+#
+# ~/.bashrc
 #
 
 EDITOR=nvim
@@ -45,6 +46,8 @@ push_markdown() {
 }
 
 # Aliases for common use
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias la="ls -la"
 alias cr="cargo run"
 alias cb="cargo build"
@@ -52,9 +55,15 @@ alias md="cd ~/MD/active && nvim ."
 alias vi="nvim"
 alias skim='tspreed -fkl -w 400'
 
+bind -m vi-insert '"\C-l": clear-screen'
+
 # clean ps1
 # PS1='\[\e[32m\]┌──(\[\e[94;1m\]\u\[\e[94m\]@\[\e[94m\]\h\[\e[0;32m\])-[\[\e[38;5;46;1m\]\w\[\e[0;32m\]] [\[\e[32m\]$?\[\e[32m\]]\n\[\e[32m\]╰─\[\e[94;1m\]\$\[\e[0m\] '
 #PS1='\[\e[1;35m\]┌─[\u@\h]─[\w]\n└─\$ \[\e[0m\]'
 #PS1='\n\[\033[32m\]\w\n\[\033[0m\]$ '
-PS1='\[\033[32m\][\W]\[\033[0m\]\[\033[33m\]$ \[\033[0m\]'
+#PS1='\[\033[32m\][\W]\[\033[0m\]\[\033[33m\]$ \[\033[0m\]'
+PS1='[\u@\h \W]\$ ' # default arch ps1
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
