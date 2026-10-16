@@ -42,8 +42,8 @@ exec mako # notification daemon
 exec foot --server
 
 ### Output scale
-output eDP-1     scale 2
-output HDMI-A-1  scale 2
+output eDP-1     scale 2 mode  2880x1800@60.001Hz
+output HDMI-A-1  scale 2 
 
 focus_wrapping workspace
 #mouse_warping none
@@ -55,7 +55,7 @@ exec swayidle -w \
 ### Layout
 default_border normal 1
 seat seat0 xcursor_theme phinger-cursors-dark 24
-font pango:iosevka 10
+font pango:iosevka aile 10
 smart_borders on
 title_align center
 focus_follows_mouse no

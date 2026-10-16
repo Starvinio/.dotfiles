@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-EDITOR=nvim
+export EDITOR=nvim
 
 set -o vi
 

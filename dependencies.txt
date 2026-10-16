@@ -20,4 +20,5 @@ swaylock
 tmux
 wl-clipboard
 wmenu
+xdg-utils
 zathura
