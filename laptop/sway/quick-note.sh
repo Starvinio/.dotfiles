@@ -8,13 +8,7 @@ if [ -z "$TODO_TEXT" ]; then
     exit 0
 fi
 
-# Format as an iCalendar VTODO block and pipe straight into calcurse
-cat << EOF | calcurse -i -
-BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VTODO
-SUMMARY:$TODO_TEXT
-END:VTODO
-END:VCALENDAR
-EOF
+# Append TODO note
+echo "$TODO_TEXT" >> ~/.note.md
+sort ~/.note.md -o ~/.note.md
 

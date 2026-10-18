@@ -1,17 +1,20 @@
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS
+exec ~/.config/sway/autostart.sh
 exec_always export XDG_CURRENT_DESKTOP=sway
+
+### Outputs
+output eDP-1     scale 2 mode  2880x1800@60.001Hz
+output HDMI-A-1  scale 2 
 
 ### Input settings
 input type:keyboard {
    xkb_layout "de"
-
-#   xkb_options caps:escape  # already set by keyd
 }
 
 ### Input settings
 input type:mouse {
 	accel_profile flat
 }
+
 input type:touchpad {
    dwt enabled
    dwtp enabled
@@ -29,30 +32,14 @@ set $up k
 set $right l
 set $term footclient
 set $menu fuzzel --terminal=$term
-
-# PATHS
-set $P_STATUS ~/.config/sway/status-improved.sh
-set $P_SWAYLOCK_CONF ~/.config/sway/swaylock.config
-
-set $lock swaylock -fC $P_SWAYLOCK_CONF
-
-### Exec on startup
-exec gammastep -l 51.49:9.14 -t 6500:3000
-exec mako # notification daemon
-exec foot --server
-
-### Output scale
-output eDP-1     scale 2 mode  2880x1800@60.001Hz
-output HDMI-A-1  scale 2 
-
-focus_wrapping workspace
-#mouse_warping none
+set $lock swaylock -fC ~/.config/sway/swaylock.config
 
 exec swayidle -w \
     before-sleep '$lock' \
 	lock '$lock'
 
 ### Layout
+focus_wrapping workspace
 default_border normal 1
 seat seat0 xcursor_theme phinger-cursors-dark 24
 font pango:iosevka aile 10
@@ -60,13 +47,12 @@ smart_borders on
 title_align center
 focus_follows_mouse no
 
-
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -fC $P_SWAYLOCK_CONF
+	bindsym $mod+Shift+x    exec $lock
     bindsym $mod+Return     exec $term
     bindsym $mod+numbersign exec ~/.config/sway/fuzzel-exec.sh
-	bindsym $mod+n			exec ~/.config/sway/calcurse-fuzzel-todo.sh
-	bindsym $mod+shift+n	exec $term calcurse
+	bindsym $mod+n			exec ~/.config/sway/quick-note.sh
+	bindsym $mod+shift+n	exec $term nvim ~/.note.md && sort ~/.note.md -o ~/.note.md
 	bindsym $mod+F12		exec $term nvim ~/MD/active/workflow/sway_setup.md
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
@@ -74,7 +60,7 @@ focus_follows_mouse no
 
     floating_modifier $mod normal
 
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
 
     ### Focus movement
     bindsym $mod+$left  focus left

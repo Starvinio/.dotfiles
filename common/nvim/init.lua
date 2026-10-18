@@ -29,9 +29,10 @@ opt.undofile = true -- Save undo history
 opt.confirm = true
 opt.swapfile = false
 
---opt.number = true
---opt.relativenumber = true
+opt.number = true
+opt.relativenumber = true
 opt.cursorline = true
+--opt.guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
 opt.title = true
 opt.wrap = false
 opt.breakindent = true
@@ -119,9 +120,10 @@ vim.pack.add({
 	-- file picker
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
-
+	"https://github.com/mluders/comfy-line-numbers.nvim",
 	-- lsp
 	--"https://github.com/neovim/nvim-lspconfig",
+	
 })
 
 
@@ -193,6 +195,7 @@ map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/MD/archive" }) e
 	{ desc = "[M]arkdown [G]rep a[R]chived", })
 
 
+require "comfy-line-numbers".setup()
 
 -- POST PLUGIN LOAD CONFIG
 cmd.colorscheme("nuarb-ansi")
