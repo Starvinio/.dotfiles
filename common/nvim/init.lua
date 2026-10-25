@@ -3,6 +3,20 @@ local vim = vim
 -- LEADER KEY AS SPACE
 vim.g.mapleader = " "
 
+local plugin_table = {
+	-- file manager
+	"https://github.com/stevearc/oil.nvim",
+
+	-- file picker
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/mluders/comfy-line-numbers.nvim",
+	-- lsp
+	--"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/ramojus/mellifluous.nvim",
+}
+	
+
 -- LSP Table
 local lsp_table = {
 	"lua_ls",
@@ -16,6 +30,7 @@ local opt = vim.opt
 local map = vim.keymap.set
 local cmd = vim.cmd
 
+-- DEFAULT TAB LENGTH WHEN NOT SPECIFIED PER-FILETYPE
 local tab_len = 4
 
 
@@ -32,74 +47,24 @@ opt.swapfile = false
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
---opt.guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,t:block-blinkon500-blinkoff500-TermCursor"
 opt.title = true
 opt.wrap = false
 opt.breakindent = true
-opt.cmdheight = 0 -- TODO: Find solution for showing important info without > 0
+opt.cmdheight = 1 -- TODO: Find solution for showing important info without > 0
 opt.winborder = "rounded"
---opt.signcolumn = "yes"
+--opt.signcolumn = "yes" -- Useful only in combination with diagnostics
 opt.inccommand = "split"
 
 
--- CUSTOM FUNCTIONS
-
-
 -- KEYBINDS
-map("n", "<leader>r", "<cmd>source ~/.dotfiles/nvim/init.lua<CR>")
---map("n", "<leader>w", "<cmd>w<CR>", { desc = "Write current buffer" })
-map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
+map("n", "<leader>r", "<cmd>source ~/.config/nvim/init.lua<CR>")
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
 map("n", "<leader>td", "<cmd>find TODO.md<CR>") -- Clear search highlights
 map("v", "<leader>$", "di$$<esc>hp", {desc="wrap $selection$"}) -- arch highlights
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
 
-local char = ""
-function surround()
-	if char == "" then
-		return
-	end
-
-	-- Save the original contents of register 'a' and its type
-	local saved_reg = vim.fn.getreg("a")
-	local saved_type = vim.fn.getregtype("a")
-
-	-- Yank visual selection into register 'a'
-	vim.cmd('normal! "ay')
--- Handle matching pairs (e.g. typing '(' wraps with '()')
-	local pairs = {
-		["("] = ")",
-		["["] = "]",
-		["{"] = "}",
-		["<"] = ">",
-	}
-	local open_char = char
-	local close_char = pairs[char] or char
-
-	-- Get selection text and replace visual selection with wrapped content
-	local selected = vim.fn.getreg("a")
-	vim.fn.setreg("a", open_char .. selected .. close_char)
-	vim.cmd('normal! gv"ap')
-
-	-- Restore register 'a'
-	vim.fn.setreg("a", saved_reg, saved_type)
-end
-
-map("v", "<leader>s", surround)
-map("v", "<leader>S", function()
-	-- Prompt the user for the surrounding string/character
-	char = vim.fn.input("Surround with: ")
-	if char == "" then
-		return
-	end
-
-	surround()
-end, { desc = "Surround visual selection" })
-
-
-
-vim.keymap.set("n", "<leader>uw", function()
+vim.keymap.set("n", "<leader>tw", function()
     vim.wo.wrap = not vim.wo.wrap
     vim.wo.linebreak = vim.wo.wrap
 
@@ -108,23 +73,12 @@ vim.keymap.set("n", "<leader>uw", function()
     else
         vim.notify("Wrap disabled")
     end
-end, { desc = "[U]I Toggle [W]rap" })
+end, { desc = "[T]oggle [W]rap" })
 
 
 -- PLUGIN IMPORTS
 -- Compare to ~/.local/share/nvim/site/pack/core/opt for cleanup
-vim.pack.add({
-	-- file manager
-	"https://github.com/stevearc/oil.nvim",
-
-	-- file picker
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/mluders/comfy-line-numbers.nvim",
-	-- lsp
-	--"https://github.com/neovim/nvim-lspconfig",
-	
-})
+vim.pack.add(plugin_table)
 
 
 --[[ 
@@ -148,7 +102,6 @@ end,  { desc = "[L]SP [F]ormat" })
 
 
 
-
 -- OIL
 require "oil".setup({
 	default_file_explorer = true,
@@ -164,7 +117,6 @@ require "oil".setup({
 	},
 })
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
-
 
 
 -- TELESCOPE

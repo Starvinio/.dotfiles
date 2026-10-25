@@ -5,3 +5,4 @@ dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 gammastep -l 51.49:9.14 -t 6500:3000 >/dev/null 2>&1 & disown
 mako >/dev/null 2>&1 & disown
 foot --server >/dev/null 2>&1 & disown
+

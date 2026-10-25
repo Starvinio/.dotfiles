@@ -1,5 +1,9 @@
 exec ~/.config/sway/autostart.sh
-exec_always export XDG_CURRENT_DESKTOP=sway
+exec_always {
+	export XDG_CURRENT_DESKTOP=sway
+	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+}
 
 ### Outputs
 output eDP-1     scale 2 mode  2880x1800@60.001Hz
@@ -42,10 +46,10 @@ exec swayidle -w \
 focus_wrapping workspace
 default_border normal 1
 seat seat0 xcursor_theme phinger-cursors-dark 24
-font pango:iosevka aile 10
+font pango:JetbrainsMono 9
 smart_borders on
 title_align center
-focus_follows_mouse no
+# focus_follows_mouse yes # keep disabled because of touchpad weirdness
 
 ### Key bindings
 	bindsym $mod+Shift+x    exec $lock
@@ -54,6 +58,8 @@ focus_follows_mouse no
 	bindsym $mod+n			exec ~/.config/sway/quick-note.sh
 	bindsym $mod+shift+n	exec $term nvim ~/.note.md && sort ~/.note.md -o ~/.note.md
 	bindsym $mod+F12		exec $term nvim ~/MD/active/workflow/sway_setup.md
+	bindsym $mod+F1 		exec btctl connect
+	bindsym $mod+shift+F1   exec btctl disconnect
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+Shift+c    exec swaymsg reload
@@ -79,6 +85,10 @@ focus_follows_mouse no
     bindsym $mod+i workspace number 2
     bindsym $mod+o workspace number 3
     bindsym $mod+p workspace number 4
+    bindsym $mod+7 workspace number 5
+    bindsym $mod+8 workspace number 6
+    bindsym $mod+9 workspace number 7
+    bindsym $mod+0 workspace number 8
 
     # Mousecontrol for browsing
     bindsym --whole-window $mod+button8 		focus next
@@ -90,6 +100,10 @@ focus_follows_mouse no
     bindsym $mod+Shift+i move container to workspace number 2
     bindsym $mod+Shift+o move container to workspace number 3
     bindsym $mod+Shift+p move container to workspace number 4
+    bindsym $mod+Shift+7 move container to workspace number 5
+    bindsym $mod+Shift+8 move container to workspace number 6
+    bindsym $mod+Shift+9 move container to workspace number 7
+    bindsym $mod+Shift+0 move container to workspace number 8
 
     ### Layout
     bindsym $mod+b 				splith
@@ -172,7 +186,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
 
-	position bottom
+	position top
     status_command ~/.config/sway/status-improved.sh
     #status_command ~/Code/smollbarr/smollbarr
 	colors {

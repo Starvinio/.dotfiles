@@ -1,8 +1,20 @@
 {
   "plugins": {
+    "alabaster.nvim": {
+      "rev": "b902c73fabefc13583bfc0c18b28950ea8f6244f",
+      "src": "https://github.com/dchinmay2/alabaster.nvim"
+    },
     "comfy-line-numbers.nvim": {
       "rev": "9adedbaf1f410cdaacf4fb2ca8eb44f3d5f6d010",
       "src": "https://github.com/mluders/comfy-line-numbers.nvim"
+    },
+    "gruvbox": {
+      "rev": "ef8864bb42bf244f0295d1c5a403b27e3d139695",
+      "src": "https://github.com/morhetz/gruvbox"
+    },
+    "mellifluous.nvim": {
+      "rev": "ec0575bdb63594c5e7fba6eb9607b009aa1fb74e",
+      "src": "https://github.com/ramojus/mellifluous.nvim"
     },
     "neovim": {
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
@@ -23,6 +35,14 @@
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "typst-preview.nvim": {
+      "rev": "1c2e19486397be1c580b560fc50ee36abe329c46",
+      "src": "https://github.com/chomosuke/typst-preview.nvim"
+    },
+    "vague.nvim": {
+      "rev": "73f8aaa866bf3d14dd0b0ab9e48c11794c1cb7ab",
+      "src": "https://github.com/vague-theme/vague.nvim"
     },
     "vim": {
       "rev": "f13f5dfbb784deddbc1d8195f34dfd9ec73e2295",

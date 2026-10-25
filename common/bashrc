@@ -3,6 +3,7 @@
 #
 
 export EDITOR=nvim
+export GTK_THEME=Adwaita:dark
 
 set -o vi
 
@@ -16,6 +17,7 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -54,6 +56,10 @@ alias cb="cargo build"
 alias md="cd ~/MD/active && nvim ."
 alias vi="nvim"
 alias skim='tspreed -fkl -w 400'
+alias sshgit='bw get password "Github SSH Key Zenbook" | wl-copy'
+alias ".."="cd .."
+alias "~"="cd ~"
+
 
 bind -m vi-insert '"\C-l": clear-screen'
 
