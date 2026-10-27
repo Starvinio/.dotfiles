@@ -48,7 +48,7 @@ default_border normal 1
 seat seat0 xcursor_theme phinger-cursors-dark 24
 font pango:JetbrainsMono 9
 smart_borders on
-title_align center
+title_align left
 # focus_follows_mouse yes # keep disabled because of touchpad weirdness
 
 ### Key bindings
@@ -62,6 +62,7 @@ title_align center
 	bindsym $mod+shift+F1   exec btctl disconnect
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
+    bindsym $mod+shift+d    exec ~/.config/sway/file-search.sh
     bindsym $mod+Shift+c    exec swaymsg reload
 
     floating_modifier $mod normal
@@ -190,7 +191,7 @@ bar {
     status_command ~/.config/sway/status-improved.sh
     #status_command ~/Code/smollbarr/smollbarr
 	colors {
-	  background #000000
+	  background #000000aa
 	  statusline $FG
 #	  # class		      border	bg	    text
 	  focused_workspace   $LBLUE  $DBLUE  	$FG

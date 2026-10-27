@@ -1,0 +1,27 @@
+[Added Associations]
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-9BYZX3.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-9BYZX3.desktop;
+message/rfc822=userapp-Thunderbird-9BYZX3.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-RBO0X3.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-RBO0X3.desktop;
+text/calendar=userapp-Thunderbird-RBO0X3.desktop;
+application/x-extension-ics=userapp-Thunderbird-RBO0X3.desktop;
+x-scheme-handler/net.thunderbird=userapp-Thunderbird-T683X3.desktop;
+
+[Default Applications]
+x-scheme-handler/mailto=userapp-Thunderbird-9BYZX3.desktop
+x-scheme-handler/mid=userapp-Thunderbird-9BYZX3.desktop
+message/rfc822=userapp-Thunderbird-9BYZX3.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-RBO0X3.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-RBO0X3.desktop
+text/calendar=userapp-Thunderbird-RBO0X3.desktop
+application/x-extension-ics=userapp-Thunderbird-RBO0X3.desktop
+x-scheme-handler/net.thunderbird=userapp-Thunderbird-T683X3.desktop
+application/pdf=org.pwmt.zathura.desktop
+text/plain=nvim-foot.desktop
+text/markdown=nvim-foot.desktop
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/gif=imv.desktop
+image/webp=imv.desktop

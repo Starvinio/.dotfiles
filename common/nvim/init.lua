@@ -8,12 +8,13 @@ local plugin_table = {
 	"https://github.com/stevearc/oil.nvim",
 
 	-- file picker
-	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
+
 	"https://github.com/mluders/comfy-line-numbers.nvim",
+
 	-- lsp
 	--"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/ramojus/mellifluous.nvim",
 }
 	
 
@@ -61,6 +62,7 @@ map("n", "<leader>r", "<cmd>source ~/.config/nvim/init.lua<CR>")
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
 map("n", "<leader>td", "<cmd>find TODO.md<CR>") -- Clear search highlights
 map("v", "<leader>$", "di$$<esc>hp", {desc="wrap $selection$"}) -- arch highlights
+map("n", "<leader>M", "<cmd>w<CR><cmd>make<CR>", {desc="Make Program"})
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
 

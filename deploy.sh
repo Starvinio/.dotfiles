@@ -27,12 +27,16 @@ if [ $machine_id == "1" ]; then
 elif [ $machine_id == "2" ]; then
 	ln -sfnv "$LAPTOP/foot" ~/.config/foot
 	ln -sfnv "$LAPTOP/sway" ~/.config/sway
+	ln -sfnv "$LAPTOP/niri" ~/.config/niri
+	ln -sfnv "$LAPTOP/waybar" ~/.config/waybar
 	echo "laptop" > "$DOTFILES/.machine"
 	echo Applying laptop configuration
 fi
 
 # common
 ln -sfnv "$COMMON/bashrc" ~/.bashrc
+ln -sfnv "$COMMON/nvim-foot.desktop" ~/.local/share/applications/nvim-foot.desktop
+ln -sfnv "$COMMON/mimeapps.list" ~/.config/mimeapps.list
 ln -sfnv "$COMMON/gitconfig" ~/.gitconfig
 ln -sfnv "$COMMON/calcurse/" ~/.config/calcurse
 ln -sfnv "$COMMON/fuzzel/" ~/.config/fuzzel

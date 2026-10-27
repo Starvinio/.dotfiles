@@ -1,0 +1,7 @@
+#~/.local/share/applications/nvim-foot.desktop
+[Desktop Entry]
+Type=Application
+Name=Neovim (foot)
+Exec=foot -e nvim %F
+MimeType=text/plain;text/markdown;
+NoDisplay=true
