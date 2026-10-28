@@ -20,11 +20,8 @@ set $down j
 set $up k
 set $right l
 set $term footclient
-set $menu wmenu-run -f "JetbrainsMono 12"
-
-# PATHS
-set $P_STATUS ~/.config/sway/status-improved.sh
-set $P_SWAYLOCK_CONF ~/.config/sway/swaylock.config
+set $menu fuzzel --terminal=$term
+set $lock swaylock -fC ~/.config/sway/swaylock.config
 
 set $lock swaylock -fC $P_SWAYLOCK_CONF
 
@@ -47,25 +44,27 @@ exec swayidle -w \
 
 ### Layout
 default_border normal 1
-seat seat0 xcursor_theme Bibata-Modern-Classic 20
-font pango:JetbrainsMono 10
+seat seat0 xcursor_theme phinger-cursors-dark 22
+font pango:JetbrainsMono 9
 smart_borders on
-title_align center
+title_align left
 focus_follows_mouse no
 
 
 ### Key bindings
-	bindsym $mod+Shift+x    exec swaylock -fC $P_SWAYLOCK_CONF
+	bindsym $mod+Shift+x    exec $lock
     bindsym $mod+Return     exec $term
-	bindsym $mod+n			exec $term nvim ~/MD/scratch.md 
-	bindsym $mod+F1			exec $term nvim ~/MD/active/workflow/sway_setup.md
+bindsym $mod+Backslash  	exec ~/.config/sway/fuzzel-exec.sh
+	bindsym $mod+n			exec ~/.config/sway/quick-note.sh
+	bindsym $mod+shift+n	exec $term nvim ~/.note.md && sort ~/.note.md -o ~/.note.md
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
+    bindsym $mod+shift+d    exec ~/.config/sway/file-search.sh
     bindsym $mod+Shift+c    exec swaymsg reload
 
     floating_modifier $mod normal
 
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
 
     ### Focus movement
     bindsym $mod+$left  focus left
@@ -113,6 +112,8 @@ focus_follows_mouse no
     bindsym $mod+Shift+Print exec sh -c 'grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png'
 
 	bindsym $mod+Shift+G exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
+
+	bindsym $mod+period exec makoctl dismiss 
 
 	for_window [app_id="Notes"] floating enable
 	for_window [app_id="Notes"] resize set width 50 ppt height 70 ppt
@@ -171,11 +172,11 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
 
-	position bottom
+	position top
     status_command ~/.config/sway/status-improved.sh
     #status_command ~/Code/smollbarr/smollbarr
 	colors {
-	  background #000000
+	  background #000000aa
 	  statusline $FG
 #	  # class		      border	bg	    text
 	  focused_workspace   $LBLUE  $DBLUE  	$FG

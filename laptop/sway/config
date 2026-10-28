@@ -49,7 +49,7 @@ seat seat0 xcursor_theme phinger-cursors-dark 24
 font pango:JetbrainsMono 9
 smart_borders on
 title_align left
-# focus_follows_mouse yes # keep disabled because of touchpad weirdness
+focus_follows_mouse no # keep disabled because of touchpad weirdness
 
 ### Key bindings
 	bindsym $mod+Shift+x    exec $lock
