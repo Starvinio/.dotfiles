@@ -182,6 +182,9 @@ set $FG #839496
 set $LBLUE #607f8e
 set $DBLUE #304f5e
 
+set $DGREY #000000ff
+set $LGREY #586e75ee
+
 ## Bar
 bar {
     # When the status_command prints a new line to stdout, swaybar updates.
@@ -191,11 +194,11 @@ bar {
     status_command ~/.config/sway/status-improved.sh
     #status_command ~/Code/smollbarr/smollbarr
 	colors {
-	  background #000000aa
+	  background $DGREY
 	  statusline $FG
 #	  # class		      border	bg	    text
 	  focused_workspace   $LBLUE  $DBLUE  	$FG
-#	  inactive_workspace  #000000       #000000   	$FG
+	  inactive_workspace  $DGREY   $DGREY   $LGREY
 #	  urgent_workspace    #FF5555  #FF5555 	#F8F8F2
 	  binding_mode        #95686b  #65383b 	$FG
 	}
@@ -206,7 +209,7 @@ bar {
  
 # class                 	border    bg	    text      indicator c_border
 client.focused          	$LBLUE    $DBLUE    $FG    	  $LBLUE    $LBLUE
-#client.unfocused        	$GREY     $GREY     $DGREY    $GREY     $BG
+client.unfocused        	$LGREY	  $DGREY 	$LGREY	  $LGREY	$LGREY
 #client.focused_inactive 	$DGREY    $GREY    	$FG       $GREY     $GREY
 #client.urgent           	b03030    f2eedf    b03030    b03030    b03030
 

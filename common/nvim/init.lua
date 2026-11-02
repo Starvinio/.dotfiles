@@ -14,16 +14,22 @@ local plugin_table = {
 	"https://github.com/mluders/comfy-line-numbers.nvim",
 
 	-- lsp
-	--"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/neovim/nvim-lspconfig",
+
+	-- colorscheme
+	"https://github.com/zenbones-theme/zenbones.nvim",
+	"https://github.com/rktjmp/lush.nvim"
+
+	-- Compare to ~/.local/share/nvim/site/pack/core/opt for cleanup
 }
-	
 
 -- LSP Table
 local lsp_table = {
 	"lua_ls",
 	"clangd",
 	"rust_analyzer",
-	"nil"
+	"nil",
+	"tinymist",
 }
 
 -- LOCAL BINDINGS FOR CONCISENESS
@@ -51,57 +57,44 @@ opt.cursorline = true
 opt.title = true
 opt.wrap = false
 opt.breakindent = true
-opt.cmdheight = 1 -- TODO: Find solution for showing important info without > 0
+opt.cmdheight = 1      -- TODO: Find solution for showing important info without > 0
 opt.winborder = "rounded"
---opt.signcolumn = "yes" -- Useful only in combination with diagnostics
+opt.signcolumn = "yes" -- Useful only in combination with diagnostics
 opt.inccommand = "split"
 
 
 -- KEYBINDS
 map("n", "<leader>r", "<cmd>source ~/.config/nvim/init.lua<CR>")
-map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
-map("n", "<leader>td", "<cmd>find TODO.md<CR>") -- Clear search highlights
-map("v", "<leader>$", "di$$<esc>hp", {desc="wrap $selection$"}) -- arch highlights
-map("n", "<leader>M", "<cmd>w<CR><cmd>make<CR>", {desc="Make Program"})
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")                        -- Clear search highlights
+map("n", "<leader>td", "<cmd>find TODO.md<CR>")                 -- Clear search highlights
+map("v", "<leader>$", "di$$<esc>hp", { desc = "wrap $selection$" }) -- arch highlights
+map("n", "<leader>M", "<cmd>w<CR><cmd>make<CR>", { desc = "Make Program" })
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic Message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic Message" })
 
 vim.keymap.set("n", "<leader>tw", function()
-    vim.wo.wrap = not vim.wo.wrap
-    vim.wo.linebreak = vim.wo.wrap
+	vim.wo.wrap = not vim.wo.wrap
+	vim.wo.linebreak = vim.wo.wrap
 
-    if vim.wo.wrap then
-        vim.notify("Wrap enabled")
-    else
-        vim.notify("Wrap disabled")
-    end
+	if vim.wo.wrap then
+		vim.notify("Wrap enabled")
+	else
+		vim.notify("Wrap disabled")
+	end
 end, { desc = "[T]oggle [W]rap" })
 
 
 -- PLUGIN IMPORTS
--- Compare to ~/.local/share/nvim/site/pack/core/opt for cleanup
 vim.pack.add(plugin_table)
 
 
---[[ 
---
--- I have disabled LSP for now, since i am trying to
--- focus more on reading compiler output.
--- 
--- This is also to learn what helpful compiler output
--- looks like.
--- 
--- It also takes away dependencies.
---
 -- LSP
 vim.lsp.enable(lsp_table)
 
 map("n", "<leader>lf", function()
 	vim.lsp.buf.format()
 	print("Document formatted!")
-end,  { desc = "[L]SP [F]ormat" })
-]]--
-
+end, { desc = "[L]SP [F]ormat" })
 
 
 -- OIL
@@ -138,7 +131,7 @@ map("n", "<leader>sm", pickers.man_pages, { desc = "[S]earch [M]anuals", })
 -- CUSTOM CWD
 --map("n", "<leader>sd", function() pickers.find_files({ cwd = "~/.dotfiles" }) end,
 --alias swayconf="nvim ~/.config/sway/config"
-	--{ desc = "[S]earch [D]otfiles", })
+--{ desc = "[S]earch [D]otfiles", })
 map("n", "<leader>mfa", function() pickers.find_files({ cwd = "~/MD/active" }) end,
 	{ desc = "[M]arkdown [F]iles [A]ctive", })
 map("n", "<leader>mga", function() pickers.live_grep({ cwd = "~/MD/active" }) end,
@@ -152,15 +145,15 @@ map("n", "<leader>mgr", function() pickers.live_grep({ cwd = "~/MD/archive" }) e
 require "comfy-line-numbers".setup()
 
 -- POST PLUGIN LOAD CONFIG
-cmd.colorscheme("nuarb-ansi")
+cmd.colorscheme("zenbones")
 
 
 -- CUSTOM FILETYPE HANDLING
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown", "text" },
-    callback = function()
-        vim.wo.wrap = true
-        vim.wo.linebreak = true
-        vim.wo.breakindent = true
-    end,
+	pattern = { "markdown", "text" },
+	callback = function()
+		vim.wo.wrap = true
+		vim.wo.linebreak = true
+		vim.wo.breakindent = true
+	end,
 })
