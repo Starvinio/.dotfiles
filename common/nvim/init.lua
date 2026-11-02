@@ -13,6 +13,10 @@ local plugin_table = {
 
 	"https://github.com/mluders/comfy-line-numbers.nvim",
 
+	-- colorscheme
+	"https://github.com/zenbones-theme/zenbones.nvim",
+	"https://github.com/rktjmp/lush.nvim", -- runtime dep
+
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
 

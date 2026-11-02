@@ -60,6 +60,7 @@ bindsym $mod+Backslash  	exec ~/.config/sway/fuzzel-exec.sh
     bindsym $mod+Shift+q    kill
     bindsym $mod+d          exec $menu
     bindsym $mod+shift+d    exec ~/.config/sway/file-search.sh
+    bindsym $mod+shift+t    exec ~/.config/sway/typst-search.sh
     bindsym $mod+Shift+c    exec swaymsg reload
 
     floating_modifier $mod normal
