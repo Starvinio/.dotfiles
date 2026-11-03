@@ -19,20 +19,14 @@ local plugin_table = {
 
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
-
-	-- colorscheme
-	"https://github.com/zenbones-theme/zenbones.nvim",
-	"https://github.com/rktjmp/lush.nvim"
-
 	-- Compare to ~/.local/share/nvim/site/pack/core/opt for cleanup
 }
 
 -- LSP Table
 local lsp_table = {
 	"lua_ls",
-	"clangd",
+	"ccls",
 	"rust_analyzer",
-	"nil",
 	"tinymist",
 }
 
