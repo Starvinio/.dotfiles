@@ -4,25 +4,9 @@
       "rev": "9adedbaf1f410cdaacf4fb2ca8eb44f3d5f6d010",
       "src": "https://github.com/mluders/comfy-line-numbers.nvim"
     },
-    "edge": {
-      "rev": "7ec78c21bd8f0b2b0b47043bb1e730c561647c72",
-      "src": "https://github.com/sainnhe/edge"
-    },
-    "kanagawa.nvim": {
-      "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
-      "src": "https://github.com/rebelot/kanagawa.nvim"
-    },
     "lush.nvim": {
       "rev": "9c60ec2279d62487d942ce095e49006af28eed6e",
       "src": "https://github.com/rktjmp/lush.nvim"
-    },
-    "mellifluous.nvim": {
-      "rev": "ec0575bdb63594c5e7fba6eb9607b009aa1fb74e",
-      "src": "https://github.com/ramojus/mellifluous.nvim"
-    },
-    "nordic.nvim": {
-      "rev": "9fb62116b891184049c50ca6ffb0d3bc100a1a6e",
-      "src": "https://github.com/AlexvZyl/nordic.nvim"
     },
     "nvim-lspconfig": {
       "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
@@ -31,14 +15,6 @@
     "oil.nvim": {
       "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
-    },
-    "onedark.nvim": {
-      "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
-      "src": "https://github.com/navarasu/onedark.nvim"
-    },
-    "onedark.vim": {
-      "rev": "47bec7a6196a843dad195d2666c3ac84c6e80c78",
-      "src": "https://github.com/joshdick/onedark.vim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
@@ -51,10 +27,6 @@
     "typst-preview.nvim": {
       "rev": "1c2e19486397be1c580b560fc50ee36abe329c46",
       "src": "https://github.com/chomosuke/typst-preview.nvim"
-    },
-    "vague.nvim": {
-      "rev": "73f8aaa866bf3d14dd0b0ab9e48c11794c1cb7ab",
-      "src": "https://github.com/vague-theme/vague.nvim"
     },
     "zenbones.nvim": {
       "rev": "8304d8df9b823ff11e103afa62f38c39f534abe6",

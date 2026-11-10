@@ -23,7 +23,6 @@ set $term footclient
 set $menu fuzzel --terminal=$term
 set $lock swaylock -fC ~/.config/sway/swaylock.config
 
-set $lock swaylock -fC $P_SWAYLOCK_CONF
 
 ### Exec on startup
 exec gammastep -l 51.49:9.14 -t 6500:3000
@@ -45,7 +44,7 @@ exec swayidle -w \
 ### Layout
 default_border normal 1
 seat seat0 xcursor_theme phinger-cursors-dark 22
-font pango:JetbrainsMono 9
+font pango:Iosevka 10
 smart_borders on
 title_align left
 focus_follows_mouse no

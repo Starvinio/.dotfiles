@@ -1,6 +1,9 @@
 #
 # ~/.bashrc
 #
+#
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 export EDITOR=nvim
 export GTK_THEME=Adwaita:dark
@@ -70,6 +73,4 @@ bind -m vi-insert '"\C-l": clear-screen'
 #PS1='\[\033[32m\][\W]\[\033[0m\]\[\033[33m\]$ \[\033[0m\]'
 PS1='[\u@\h \W]\$ ' # default arch ps1
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
 
