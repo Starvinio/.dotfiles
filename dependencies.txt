@@ -27,7 +27,7 @@ sway
 swayidle
 swaylock
 tmux
-ttf-jetbrains-mono
+ttc-iosevka
 typst
 wl-clipboard
 wmenu

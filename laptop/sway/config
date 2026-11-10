@@ -9,9 +9,8 @@ exec_always {
 output eDP-1     scale 2 mode  2880x1800@60.001Hz
 output HDMI-A-1  scale 2 
 
-### Input settings
-input type:keyboard {
-   xkb_layout "de"
+input * {
+	xkb_layout de,eu
 }
 
 ### Input settings
@@ -46,7 +45,7 @@ exec swayidle -w \
 focus_wrapping workspace
 default_border normal 1
 seat seat0 xcursor_theme phinger-cursors-dark 24
-font pango:JetbrainsMono 9
+font pango:Iosevka 10
 smart_borders on
 title_align left
 focus_follows_mouse no 
@@ -125,6 +124,11 @@ focus_follows_mouse no
 	bindsym $mod+Shift+G exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 
 	bindsym $mod+period exec makoctl dismiss 
+	# Switch directly to German (index 0)
+	bindsym $mod+Shift+1 input type:keyboard xkb_switch_layout 0
+
+# Switch directly to UK English (index 1)
+	bindsym $mod+Shift+2 input type:keyboard xkb_switch_layout 1
 
 	for_window [app_id="Notes"] floating enable
 	for_window [app_id="Notes"] resize set width 50 ppt height 70 ppt
@@ -190,7 +194,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
 
-	position top
+	position bottom
     status_command ~/.config/sway/status-improved.sh
     #status_command ~/Code/smollbarr/smollbarr
 	colors {

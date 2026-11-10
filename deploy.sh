@@ -34,7 +34,7 @@ elif [ $machine_id == "2" ]; then
 fi
 
 # common
-ln -sfnv "$COMMON/bashrc" ~/.bashrc
+ln -sfnv "$COMMON/bashrc.sh" ~/.bashrc
 ln -sfnv "$COMMON/nvim-foot.desktop" ~/.local/share/applications/nvim-foot.desktop
 ln -sfnv "$COMMON/mimeapps.list" ~/.config/mimeapps.list
 ln -sfnv "$COMMON/gitconfig" ~/.gitconfig
@@ -43,6 +43,7 @@ ln -sfnv "$COMMON/fuzzel/" ~/.config/fuzzel
 ln -sfnv "$COMMON/nvim/" ~/.config/nvim
 ln -sfnv "$COMMON/tmux.conf" ~/.tmux.conf
 ln -sfnv "$COMMON/zathura" ~/.config/zathura
+ln -sfnv "$COMMON/doom" ~/.config/doom
 
 
 

@@ -19,6 +19,9 @@ local plugin_table = {
 
 	-- lsp
 	"https://github.com/neovim/nvim-lspconfig",
+
+	--typst 
+	"https://github.com/chomosuke/typst-preview.nvim",
 	-- Compare to ~/.local/share/nvim/site/pack/core/opt for cleanup
 }
 
@@ -115,6 +118,9 @@ map("n", "-", "<cmd>Oil<CR>", { desc = "Open file explorer" })
 -- TELESCOPE
 local pickers = require "telescope.builtin"
 
+-- Emacs horizontal movement
+map("i", "<c-f>", "<Right>", { desc = "[S]earch Buffers", })
+map("i", "<c-b>", "<Left>", { desc = "[S]earch Buffers", })
 -- map("n", "<leader>sp", pickers.builtin, { desc = "[S]earch Builtin [P]ickers", })
 map("n", "<leader><leader>", pickers.buffers, { desc = "[S]earch Buffers", })
 map("n", "<leader>sf", pickers.find_files, { desc = "[S]earch [F]iles", })
