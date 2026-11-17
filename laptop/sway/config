@@ -10,7 +10,7 @@ output eDP-1     scale 2 mode  2880x1800@60.001Hz
 output HDMI-A-1  scale 2 
 
 input * {
-	xkb_layout de,eu
+	xkb_layout eu
 }
 
 ### Input settings
