@@ -8,7 +8,7 @@
 export EDITOR=nvim
 export GTK_THEME=Adwaita:dark
 
-set -o vi
+set -o emacs
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then

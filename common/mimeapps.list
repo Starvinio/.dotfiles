@@ -8,6 +8,7 @@ x-scheme-handler/webcals=userapp-Thunderbird-RBO0X3.desktop;
 text/calendar=userapp-Thunderbird-RBO0X3.desktop;
 application/x-extension-ics=userapp-Thunderbird-RBO0X3.desktop;
 x-scheme-handler/net.thunderbird=userapp-Thunderbird-T683X3.desktop;
+video/mp4=org.gnome.Showtime.desktop;vlc.desktop;
 
 [Default Applications]
 x-scheme-handler/mailto=userapp-Thunderbird-9BYZX3.desktop

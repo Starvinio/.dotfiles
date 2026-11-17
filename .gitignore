@@ -1,1 +1,9 @@
 .machine
+/common/emacs/*
+!common/emacs/configuration.org
+!common/emacs/init.el
+!common/emacs/custom.el
+!common/emacs/resources
+!common/emacs/snippets
+!common/emacs/themes
+
