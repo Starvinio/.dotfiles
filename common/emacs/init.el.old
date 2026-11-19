@@ -1,0 +1,66 @@
+;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
+
+(setq custom-file "~/.config/emacs/custom.el")
+(load-file custom-file)
+
+(setopt ring-bell-function 'ignore)
+
+;; get rid of the annoying backup files
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
+
+;; disable gui clutter
+
+(setopt inhibit-startup-screen t)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(blink-cursor-mode 0)
+
+;; ido mode
+(require 'ido)
+(ido-mode 1)
+(ido-everywhere 1)
+
+(setopt display-line-numbers-type 'relative)
+(global-display-line-numbers-mode)
+(setopt line-number-mode t)                        ; Show current line in modeline
+(setopt column-number-mode t)                      ; Show column as well
+
+;; font and theme
+(add-to-list 'default-frame-alist `(font . "Iosevka-15"))
+(load-theme 'modus-vivendi t)
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
+
+(windmove-default-keybindings 'control)
+
+(setopt window-combination-resize t)
+
+;; tabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default fill-column 80)
+(setopt sentence-end-double-space nil)
+
+;; autopairs
+(electric-pair-mode 1)
+
+;; compilation mode
+(add-to-list 'display-buffer-alist
+             '("\\*compilation\\*"
+               (display-buffer-below-selected)
+               (window-height . 0.5)))
+
+(setq-default compilation-scroll-output t)
+
+;; Mouse support
+(when (display-graphic-p)
+  (mouse-shift-adjust-mode)
+  (context-menu-mode))
+
+
+(use-package which-key
+  :config
+  (which-key-mode))

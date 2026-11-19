@@ -43,7 +43,7 @@ ln -sfnv "$COMMON/fuzzel/" ~/.config/fuzzel
 ln -sfnv "$COMMON/nvim/" ~/.config/nvim
 ln -sfnv "$COMMON/tmux.conf" ~/.tmux.conf
 ln -sfnv "$COMMON/zathura" ~/.config/zathura
-ln -sfnv "$COMMON/doom" ~/.config/doom
+ln -sfnv "$COMMON/emacs" ~/.config/emacs
 
 
 

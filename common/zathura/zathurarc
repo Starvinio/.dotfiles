@@ -15,6 +15,5 @@ set notification-fg "#b4bdc3"
 set highlight-color "#ebcb8b"
 set highlight-active-color "#b4bdc3"
 
-set recolor true
 set recolor-lightcolor "#1c1917"
 set recolor-darkcolor "#b4bdc3"

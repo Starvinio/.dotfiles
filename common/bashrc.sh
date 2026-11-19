@@ -62,6 +62,7 @@ alias skim='tspreed -fkl -w 400'
 alias sshgit='bw get password "Github SSH Key Zenbook" | wl-copy'
 alias ".."="cd .."
 alias "~"="cd ~"
+alias Uni='cd ~/Uni/ && tmux new -s uni'
 
 
 bind -m vi-insert '"\C-l": clear-screen'

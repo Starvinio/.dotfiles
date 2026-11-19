@@ -2,6 +2,7 @@
 /common/emacs/*
 !common/emacs/configuration.org
 !common/emacs/init.el
+!common/emacs/init.el.old
 !common/emacs/custom.el
 !common/emacs/resources
 !common/emacs/snippets
